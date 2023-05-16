@@ -1,0 +1,28 @@
+roncontainer{
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+rontitle{
+ color: White;
+ background-color: rgba(153, 204, 255, 0.3);
+ border-radius: 20px;
+ text-align: center;
+ font-size: 2em;
+ page-break-after: always;
+ page-break-before: always;
+ display: block;
+}
+
+rontext{
+ color: White;
+ background-color: rgba(153, 204, 255, 0.3);
+ border-radius: 20px;
+ text-align: left;
+ font-size: 1.1em;
+ text-indent: 40px;
+ page-break-after: always;
+ page-break-before: always;
+ display: block;
+}
