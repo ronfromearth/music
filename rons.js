@@ -40,6 +40,7 @@ function start(){
    
    currentplaylist: [],
    playlist: [],
+   songlistitems: [],
    audioplayer: null,
    audioplayerplaying: false,
    audioplayerlooping: false,
@@ -74,6 +75,7 @@ function start(){
 			   if(songlistcreature.currentplaylist.length > 0){
 				   if(songlistcreature.playingsongnumber == null){
 					   songlistcreature.playsong(songlistcreature.currentplaylist[0])
+					   songlistcreature.songlistitems[0].style.color = "Green"
 				   }
 				   songlistcreature.audioplayerplaying = true
 				   songlistcreature.audioplayer.play()
@@ -117,11 +119,14 @@ function start(){
 	   this.audioplayer.play()
 	   this.audioplayer.playing = true
 	   this.playingsong = song
+	   //songlistcreature.songlistitems[songlistcreature.playingsongnumber].style.color = "Green"
+	   //if(songlistcreature.playingsongnumber-1 != -1){songlistcreature.songlistitems[songlistcreature.playingsongnumber-1].style.color = "White"}
 	   for(i=0;i<this.currentplaylist.length;i++){
 		   if(this.currentplaylist[i] == song){this.playingsongnumber = i}
 	   }
    },
     songtoplaylist: function(hsong){
+		songlistcreature.songlistitems = []
 		document.getElementById("playlist").innerHTML = ""
 		this.currentplaylist.push(hsong)
 		let list = document.createElement("ol")
@@ -130,9 +135,8 @@ function start(){
 		   song.innerHTML = this.currentplaylist[i]
 		   song.style.color = "White"
 		   song.style.backgroundColor = "rgba(255,255,255,0.3)"
-		   song.onclick = function(){
-			   songlistcreature.playsong(song.innerHTML)
-		   }
+		   song.onclick = function(){songlistcreature.playsong(song.innerHTML)}
+		   songlistcreature.songlistitems.push(song)
 			list.appendChild(song)
 		}
 		document.getElementById("playlist").appendChild(list)
