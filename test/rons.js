@@ -65,6 +65,7 @@ function start(){
 
 		  let thang = new XMLHttpRequest()
 	   thang.onreadystatechange = function(){
+
 	if(this.readyState == 4 && this.status == 200){
 	songlistcreature.songlistwithmp3 = this.responseText.split("~~~")
 		songlistcreature.songlist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
@@ -72,22 +73,24 @@ function start(){
 
 	   this.audioplayer = document.getElementById("songform")
 	   this.audioplayer.autoplay = true
+
 	 				  this.audioplayer.onended = function(){
 		  				 if(songlistcreature.audioplayerlooping == false){
 			 				  if(songlistcreature.playingsongnumber == songlistcreature.currentplaylist.length - 1){
 									   songlistcreature.playsong(songlistcreature.currentplaylist[0])
-
 								   }else{
 										   songlistcreature.playsong(songlistcreature.currentplaylist[songlistcreature.playingsongnumber+1])
-				   
 			  								 }
 							   }
 					   }
+
 		songlistcreature.songlisttodiv(document.getElementById("songlist"))
 					}
-	  this.open("GET","songlist.txt",true)
-		   this.send()
+
 	   }
+
+	   thang.open("GET","songlist.txt",true)
+	   thang.send()
    },
    playsong: function(song){
 	   this.audioplayer.pause()
