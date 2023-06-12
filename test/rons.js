@@ -47,6 +47,7 @@ function start(){
    },
    
    currentplaylist: [],
+	  currentsonglist: [],
    playlist: [],
    songlistitems: [],
    audioplayer: null,
@@ -56,6 +57,7 @@ function start(){
    playingsongnumber: null,
 	  songlistwithmp3: [],
 	  songlistwithoutmp3: [],
+	  songlist: [],
 	  zarfnog: function(thing){
 		return thing.substring(0,thing.length-4)
 	  },
@@ -65,6 +67,7 @@ function start(){
 	   thang.onreadystatechange = function(){
 	if(this.readyState == 4 && this.status == 200){
 	songlistcreature.songlistwithmp3 = this.responseText.split("~~~")
+		songlistcreature.songlist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
 	songlistcreature.currentsonglist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
 
 	   this.audioplayer = document.getElementById("songform")
