@@ -9,7 +9,7 @@ function start(){
 	  songlistcreature.songlisttodiv(document.getElementById("songlist"))
   }
   function containstext(song){
-	  if(song.toUpperCase().indexOf(document.getElementById("songsearch").value.toUpperCase()) == -1){return false}else{return true}
+	  if(song.toUpperCase().indexOf(document.getElementById("songsearch").value.toUpperRrrCase()) == -1){return false}else{return true}
   }
 
   let songlistcreature = {
@@ -62,7 +62,8 @@ function start(){
 		return thing.substring(0,thing.length-4)
 	  },
    playlistinit: function(){
-
+	   this.audioplayer = document.getElementById("songform")
+	   this.audioplayer.autoplay = true
 		  let thang = new XMLHttpRequest()
 	   thang.onreadystatechange = function(){
 
@@ -71,10 +72,9 @@ function start(){
 		songlistcreature.songlist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
 	songlistcreature.currentsonglist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
 
-	   this.audioplayer = document.getElementById("songform")
-	   this.audioplayer.autoplay = true
 
-	 				  this.audioplayer.onended = function(){
+
+	 				  songlistcreature.audioplayer.onended = function(){
 		  				 if(songlistcreature.audioplayerlooping == false){
 			 				  if(songlistcreature.playingsongnumber == songlistcreature.currentplaylist.length - 1){
 									   songlistcreature.playsong(songlistcreature.currentplaylist[0])
