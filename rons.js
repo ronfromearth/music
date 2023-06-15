@@ -1,6 +1,16 @@
-
+let android = false
 function start(){
   songlistcreature.playlistinit()
+  alert(window.innerWidth)
+  if(window.innerWidth < window.innerHeight){
+document.getElementById("ronbtn").style.fontSize = "2em"
+document.getElementById("pagetop").style.fontSize = "2em"
+document.getElementById("pagesongs").style.fontSize = "2em"
+document.getElementById("table").style.fontSize = "2em"
+document.getElementById("zarfnog").style.fontSize = "2em"
+document.getElementById("superdiv").style.fontSize = "3em"
+android = true
+  }
   }
   function inputchanged(){
 	  let songsearch = document.getElementById("songsearch")

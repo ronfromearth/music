@@ -8,21 +8,21 @@ Ron Elliott
 </title>
 </head>
 <body style="background-image:url('background.png'); background-repeat: repeat; background-attachment: fixed;" onload="start()">
-<button class="ronbtn" style="z-index:2;position:fixed;top:10%;bottom:80%;left:0;right:90%;" onclick="songlistcreature.showsongtoggle()">Songs</button>
+<button id="ronbtn" class="ronbtn" style="z-index:2;position:fixed;top:10%;bottom:80%;left:0;right:90%;" onclick="songlistcreature.showsongtoggle()">Songs</button>
 <div class="rontitlediv" style="background-color:rgba(153,204,255,0.3);position:absolute;left:0;top:0;bottom:80%;right:0;">
 <ronsupertitle id="pagetop">Ron Elliott</ronsupertitle>
 </div>
 <div class="ronmaintext" style="background-color:rgba(153,204,255,0.15);position:absolute;left:0;top:20%;bottom:70%;right:0;">
 <rontitle id="pagesongs">Songs</rontitle>
 </div>
-<table class="ronlinks" style="margin-left:auto;margin-right:auto;position:absolute;left:0;top:30%;bottom:60%;right:0;">
+<table id="table" class="ronlinks" style="margin-left:auto;margin-right:auto;position:absolute;left:0;top:30%;bottom:60%;right:0;">
 <tr><td><rontext><a href="https://www.youtube.com/watch?v=LaoyvJpRU5g">Ron Elliott on Youtube</a></rontext></td>
 <td><rontext><a href="https://www.soundclick.com/artist/default.cfm?bandID=1409337&content=songs">Ron Elliott on Soundclick</a></rontext></td>
 <td><rontext><a href="https://open.spotify.com/artist/0FR79GSEXeuei7SGy94IZd">Ron Elliott on Spotify</a></rontext></td>
 <td><rontext><a href="https://music.apple.com/us/artist/ron-elliott/1684419140">Ron Elliott on Apple Music</a></rontext></td>
 </tr></table>
 <div class="ronmaintext" style="background-color:rgba(153,204,255,0.3);position:absolute;left:0;top:40%;bottom:0;right:0;">
-<rontext><br>Ron<br>
+<rontext id="zarfnog"><br>Ron<br>
 I grew up in a small town in Oklahoma, Quapaw, Oklahoma.<br>
 I remember getting my first transistor radio... must have been around 13 yrs old.<br>
 My favorite all time band was the Beatles. And, did things ever change. Yes, Neil Young, The Zombies, The Animals and oh so many more suddenly flooded my brain with new music...<br>
@@ -46,16 +46,16 @@ Ron</rontext>
 
 
 
-<div id="superdiv" style="position:fixed;z-position:1;display:none">
-<div style="background-color:Black;position:fixed;left:70%;top:0;bottom:80%;right:0;">
+<div id="superdiv" style="font-size:1.1em;position:fixed;z-position:1;display:none">
+<div style="background-color:Black;position:fixed;left:30%;top:0;bottom:80%;right:0;">
 <rontitle>Songs</rontitle>
 </div>
-<div style="user-select:none;background-color:Black;position:fixed;overflow:scroll;left:70%;top:20%;bottom:30%;right:0;" id="songlist">
+<div style="user-select:none;background-color:Black;position:fixed;overflow:scroll;left:30%;top:20%;bottom:30%;right:0;" id="songlist">
 </div>
-<input style="text-align:center;position:fixed;left:70%;top:10%;bottom:80%;right:0;" oninput="inputchanged()" id="songsearch" placeholder="Type Here to Search Songs"></input>
-<audio controls style="background-color:Black;position:fixed;left:70%;top:70%;bottom:20%;right:0%;min-width:30%;min-height:10%" id="songform">
+<input style="text-align:center;position:fixed;left:30%;top:10%;bottom:80%;right:0;" oninput="inputchanged()" id="songsearch" placeholder="Type Here to Search Songs"></input>
+<audio controls style="background-color:Black;position:fixed;left:30%;top:70%;bottom:20%;right:0%;min-width:30%;min-height:10%" id="songform">
 </audio>
-<div style="user-select:none;background-color:Black;position:fixed;overflow:scroll;left:70%;top:80%;bottom:0;right:0;" id="playlist">
+<div style="user-select:none;background-color:Black;position:fixed;overflow:scroll;left:30%;top:80%;bottom:0;right:0;" id="playlist">
 </div>
 </div>
 </body>
