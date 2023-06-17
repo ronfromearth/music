@@ -20,28 +20,80 @@ android = true
 	  songlistcreature.songlisttodiv(document.getElementById("songlist"))
   }
   function containstext(song){
-	  if(song.toUpperCase().indexOf(document.getElementById("songsearch").value.toUpperRrrCase()) == -1){return false}else{return true}
+	  if(song.toUpperCase().indexOf(document.getElementById("songsearch").value.toUpperCase()) == -1){return false}else{return true}
   }
 
   let songlistcreature = {
+
+        artist: "Ron Elliott",
 
 	  allosfavs: ["Wooden Box","Broken Heart 2017","On This Side of Heaven","Underground 0915","Open Up Your Heart","Ron's I Believe","February 2020","New Day","Old Blues","Holyman Revisited","Ron's ...some kind of","Ron's Guns and Roses","I Get High","Down On Me","So blue in blue","Chain Gang"],
 	  //still wildflower
 	  ronsfavs: [],
 
    songlisttodiv: function(div){
-	   let list = document.createElement("ol")
+	   let list = document.createElement("table")
+
+	   let tableheading = document.createElement("tr")
+
+function tableheadingstyle(parent,names){
+for(i = 0; i < names.length; i++){
+  let element = document.createElement("td")
+    element.innerHTML = names[i]
+    element.style.textAlign = "center"
+	   element.style.color = "rgba(84, 215, 255,1)"
+	   element.style.borderBottomStyle = "double"
+       	   element.style.borderBottomColor = "rgba(28, 158, 126,1)"
+       	   element.style.borderBottomWidth = "7px"
+	   parent.appendChild(element)
+}
+   }
+        tableheadingstyle(tableheading,["Song","Links","Description","ReleaseDate","Length","Beings"])
+
+       list.appendChild(tableheading)
 	   for(i=0;i<this.currentsonglist.length;i++){
-		   let song = document.createElement("li")
+	    let songrow = document.createElement("tr")
+
+		   let song = document.createElement("td")
+		   songrow.appendChild(song)
 		   song.innerHTML = this.currentsonglist[i]
-		   song.style.color = "White"
-		   song.style.backgroundColor = "rgba(255,255,255,0.3)"
+		   song.style.color = "rgba(242, 250, 255,1)"
+		   song.style.textShadow = "2px 2px 8px rgba(35, 66, 53,1)"
+		   song.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.7),rgba(109, 212, 99,0.9),rgba(92, 244, 255,1))"
+
+
+		  let songlinks = document.createElement("td")
+		  songlinks.innerHTML = "Links"
+		  songlinks.style.color = "White"
+           songrow.appendChild(songlinks)
+
+          let songdescription = document.createElement("td")
+          songdescription.innerHTML = "Description"
+          songdescription.style.color = "White"
+          songrow.appendChild(songdescription)
+
+          let songreleasedate = document.createElement("td")
+          songreleasedate.innerHTML = "releasedate"
+          songreleasedate.style.color = "White"
+          songrow.appendChild(songreleasedate)
+
+          let songlength = document.createElement("td")
+          songlength.innerHTML = "length"
+          songlength.style.color = "White"
+          songrow.appendChild(songlength)
+
+          let songbeings = document.createElement("select")
+          songbeingsoptionone = document.createElement("option")
+          songbeingsoptionone.innerHTML = this.artist
+          songbeings.appendChild(songbeingsoptionone)
+          songrow.appendChild(songbeings)
+
 		   song.onclick = function(){songlistcreature.songtoplaylist(song.innerHTML)
 		   if(songlistcreature.currentplaylist.length == 1){
 			   				   songlistcreature.playsong(song.innerHTML)
 		   }
 		   }
-		   list.appendChild(song)
+		   list.appendChild(songrow)
 		   
 	   }
 	   div.appendChild(list)
