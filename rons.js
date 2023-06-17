@@ -48,7 +48,7 @@ for(i = 0; i < names.length; i++){
 	   parent.appendChild(element)
 }
    }
-        tableheadingstyle(tableheading,["Song","Links","Description","ReleaseDate","Length","Beings"])
+        tableheadingstyle(tableheading,["Song","Links","Description","ReleaseDate","Length","Artists"])
 
        list.appendChild(tableheading)
 	   for(i=0;i<this.currentsonglist.length;i++){
@@ -59,26 +59,26 @@ for(i = 0; i < names.length; i++){
 		   song.innerHTML = this.currentsonglist[i]
 		   song.style.color = "rgba(242, 250, 255,1)"
 		   song.style.textShadow = "2px 2px 8px rgba(35, 66, 53,1)"
-		   song.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.7),rgba(109, 212, 99,0.9),rgba(92, 244, 255,1))"
+		   song.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.3),rgba(109, 212, 99,0.4),rgba(92, 244, 255,0.4))"
 
 
 		  let songlinks = document.createElement("td")
-		  songlinks.innerHTML = "Links"
+		  songlinks.innerHTML = ""
 		  songlinks.style.color = "White"
            songrow.appendChild(songlinks)
 
           let songdescription = document.createElement("td")
-          songdescription.innerHTML = "Description"
+          songdescription.innerHTML = ""
           songdescription.style.color = "White"
           songrow.appendChild(songdescription)
 
           let songreleasedate = document.createElement("td")
-          songreleasedate.innerHTML = "releasedate"
+          songreleasedate.innerHTML = ""
           songreleasedate.style.color = "White"
           songrow.appendChild(songreleasedate)
 
           let songlength = document.createElement("td")
-          songlength.innerHTML = "length"
+          songlength.innerHTML = ""
           songlength.style.color = "White"
           songrow.appendChild(songlength)
 
