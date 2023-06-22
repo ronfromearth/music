@@ -1,8 +1,15 @@
 let android = false
 function start(){
-    songlistcreature.divinit()
   songlistcreature.playlistinit()
   if(window.innerWidth < window.innerHeight){
+document.getElementById("ronbtnsongs").style.fontSize = "4em"
+document.getElementById("ronbtnbooks").style.fontSize = "4em"
+document.getElementById("pagetop").style.fontSize = "8em"
+document.getElementById("pagesongs").style.fontSize = "6em"
+document.getElementById("table").style.fontSize = "2em"
+document.getElementById("zarfnog").style.fontSize = "3em"
+document.getElementById("superdiv").style.fontSize = "3em"
+document.getElementById("songsearch").style.fontSize = "1.5em"
 android = true
   }
   }
@@ -24,87 +31,11 @@ android = true
 	  //still wildflower
 	  ronsfavs: [],
 
-        superdiva: null,
-        songlista: null,
-        audiocontrolsa: null,
-        playlista: null,
-        artistnamea: null,
-        songsearcha:null,
-
-	  divinit: function(){
-	    this.superdiva = document.createElement("div")
-	    this.superdiva.style.fontSize = "1.1em"
-	    this.superdiva.style.position = "fixed"
-	    this.superdiva.style.zPosition = "1"
-	    this.superdiva.style.display = "none"
-	    this.superdiva.style.backgroundColor = "black"
-	    this.superdiva.style.left = "30%"
-	    this.superdiva.style.top = "0%"
-	    this.superdiva.style.bottom = "0%"
-	    this.superdiva.style.right = "0%"
-
-	    this.artistnamea = document.createElement("h1")
-	    this.artistnamea.style.fontSize = "3em"
-	    this.artistnamea.style.color = "white"
-	    this.artistnamea.style.textAlign = "center"
-	    this.artistnamea.style.top = "5%"
-	    this.artistnamea.style.left = "5%"
-	    this.artistnamea.style.right = "5%"
-	    this.artistnamea.style.bottom = "85%"
-	    this.artistnamea.style.position = "absolute"
-	    this.artistnamea.innerHTML = this.artist
-        this.superdiva.appendChild(this.artistnamea)
-
-        this.songsearcha = document.createElement("input")
-        this.songsearcha.style.fontSize = "1.1em"
-        this.songsearcha.style.color = "white"
-        this.songsearcha.style.textAlign = "center"
-        this.songsearcha.style.left = "0"
-        this.songsearcha.style.right = "66%"
-        this.songsearcha.style.top = "17%"
-        this.songsearcha.oninput = function(){this.inputchanged()}
-        this.songsearcha.style.bottom = "75%"
-        this.songsearcha.style.position = "absolute"
-        this.songsearcha.placeholder = "Search Songs"
-        this.superdiva.appendChild(this.songsearcha)
-
-        this.songlista = document.createElement("div")
-                this.songlista.style.fontSize = "1.1em"
-                this.songlista.style.color = "white"
-                this.songlista.style.textAlign = "center"
-                this.songlista.style.left = "5%"
-                this.songlista.style.right = "5%"
-                this.songlista.style.top = "25%"
-                this.songlista.style.bottom = "30%"
-                this.songlista.style.overflow = "scroll"
-                this.songlista.style.position = "absolute"
-                this.superdiva.appendChild(this.songlista)
-
-                this.audiocontrolsa = document.createElement("audio")
-                this.audiocontrolsa.controls = true
-                this.audiocontrolsa.style.left = "5%"
-                this.audiocontrolsa.style.right = "5%"
-                this.audiocontrolsa.style.top = "70%"
-                this.audiocontrolsa.style.bottom = "24%"
-                this.audiocontrolsa.style.position = "absolute"
-                this.audiocontrolsa.style.minWidth = "100%"
-                this.superdiva.appendChild(this.audiocontrolsa)
-
-                this.playlista = document.createElement("div")
-                this.playlista.style.left = "5%"
-                this.playlista.style.right = "5%"
-                this.playlista.style.top = "76%"
-                this.playlista.style.bottom = "4%"
-                this.playlista.style.position = "absolute"
-                this.superdiva.appendChild(this.playlista)
-document.body.appendChild(this.superdiva)
-	  },
-
-
-   songlisttodiv: function(){
-   let div = this.songlista
+   songlisttodiv: function(div){
 	   let list = document.createElement("table")
+
 	   let tableheading = document.createElement("tr")
+
 function tableheadingstyle(parent,names){
 for(i = 0; i < names.length; i++){
   let element = document.createElement("td")
@@ -130,41 +61,30 @@ for(i = 0; i < names.length; i++){
 		   song.style.textShadow = "2px 2px 8px rgba(35, 66, 53,1)"
 		   song.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.3),rgba(109, 212, 99,0.4),rgba(92, 244, 255,0.4))"
 
+
 		  let songlinks = document.createElement("td")
 		  songlinks.innerHTML = ""
-		  songlinks.style.color = "rgba(242, 250, 255,1)"
-          		   songlinks.style.textShadow = "2px 2px 8px rgba(35, 66, 53,1)"
-          		   songlinks.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.3),rgba(109, 212, 99,0.4),rgba(92, 244, 255,0.4))"
-
+		  songlinks.style.color = "White"
            songrow.appendChild(songlinks)
 
           let songdescription = document.createElement("td")
           songdescription.innerHTML = ""
-          songdescription.style.color = "rgba(242, 250, 255,1)"
-          		   songdescription.style.textShadow = "2px 2px 8px rgba(35, 66, 53,1)"
-          		   songdescription.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.3),rgba(109, 212, 99,0.4),rgba(92, 244, 255,0.4))"
+          songdescription.style.color = "White"
           songrow.appendChild(songdescription)
 
           let songreleasedate = document.createElement("td")
           songreleasedate.innerHTML = ""
-          songreleasedate.style.color = "rgba(242, 250, 255,1)"
-          		   songreleasedate.style.textShadow = "2px 2px 8px rgba(35, 66, 53,1)"
-          		   songreleasedate.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.3),rgba(109, 212, 99,0.4),rgba(92, 244, 255,0.4))"
+          songreleasedate.style.color = "White"
           songrow.appendChild(songreleasedate)
 
           let songlength = document.createElement("td")
           songlength.innerHTML = ""
-          songlength.style.color = "rgba(242, 250, 255,1)"
-          		   songlength.style.textShadow = "2px 2px 8px rgba(35, 66, 53,1)"
-          		   songlength.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.3),rgba(109, 212, 99,0.4),rgba(92, 244, 255,0.4))"
+          songlength.style.color = "White"
           songrow.appendChild(songlength)
 
           let songbeings = document.createElement("select")
           songbeingsoptionone = document.createElement("option")
           songbeingsoptionone.innerHTML = this.artist
-          songbeings.style.color = "rgba(242, 250, 255,1)"
-          		   songbeings.style.textShadow = "2px 2px 8px rgba(35, 66, 53,1)"
-          		   songbeings.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.3),rgba(109, 212, 99,0.4),rgba(92, 244, 255,0.4))"
           songbeings.appendChild(songbeingsoptionone)
           songrow.appendChild(songbeings)
 
@@ -180,16 +100,18 @@ for(i = 0; i < names.length; i++){
    },
    
    showsongtoggle: function(){
-	   if(this.superdiva.style.display == "none"){
-		   this.superdiva.style.display = "inline"
+	   document.getElementById("pagesongs").scrollIntoView()
+	   if(document.getElementById('superdiv').style.display == "none"){
+		   document.getElementById('superdiv').style.display = "inline"
 	   }
 	   else{
-		   this.superdiva.style.display = "none"
+		   document.getElementById('superdiv').style.display = "none"
 	   }
    },
    
    currentplaylist: [],
-	  currentsonglist: [],
+	  currentsonglist: ["And, I cry","Ron's Open Up Your Heart","Ron's My Feet","One Life","Ron's Caveman","I Remember","Ron's Jimmy","Ron's Everybody Knows It (33 Miles)","Ron's Radio","Ron's I Believe","Ron's Guns and Roses","Ron's ...some kind of","Hold On","I Get High","Working On It","Age Is Just A Number","American Haze","In His Love","I Don't Need A Bad Thing 2017","angel","...in the thick of it","Dragon Dreams...there was a time","Slow Train","getten' kind of hazy","Not new to Mischief","Take What's Given","Old Man's Story","Right Time","Like a NY...","Searching","24 kt Lady","Hole in the Ground","Corn Cobs","Deal the Cards","Sweet","Feelin' Like Chocolate","Unknown","Let's Play","Select Drive","Fly Away","Over Easy","Give Me Some Old Time","Lost Lamb","3am Blues","Time Given","Clock Ticking","Second Notice","Ghetto-his momma","Old Blues","Tax Time","Cold Trail","February 2020","No Name","Home Cookin","In the Shallows","Follow the Sun","A Song Full of Story","Beautiful Ramble 2","Wonder of it All","Even If","Give Me Something Sweeter 2","Nothing is All You Need","It's All Just a Dream","Cold and Wet","Down at the Camp","Inside of Me","Chain Gang","Believe","Birds and Bees","Dance With Me","No Doubt About It","Quest","Makin Hay","Here It Comes","Progress Isn't Free","Ready For It","...a frame of time","Crazy World","Dirt Under My Nails","This Time Goes Bye","Summer Time","New Day","Find It","Time Zone","Wooden Box","Holyman Revisited","Wild Flower","Wasteland","Firewood","Inside Out","Say No More Z","Missed the Call","Can't Say No More Final","Into the Fire","In These Days","Forever","Underground 0915","Going for a Walk","When the Snow Falls","Butterfly","Not Enough Time","A Man Who Sees It All","The Spirit Inside V2","Still","Broken Road","So blue in blue","Down On Me","When the Night Calls","3 or Better","Missing","Creamed Turkey On Toast","Lost at Walmart","Enjoy the Time You Have","Until It's Gone","One Sky","Difficult Child","Dust in My Eyes","You Lost It All There Was a Trail of Tears","What You Make It","It's Midnight","In the Right Lane","It's Something Like That","South Fork","Ask the Children","When You're Dead","Know You Better","Tin Plates","Anything, But This","It's Almost Christmas","The Goods"],
+
    playlist: [],
    songlistitems: [],
    audioplayer: null,
@@ -199,20 +121,22 @@ for(i = 0; i < names.length; i++){
    playingsongnumber: null,
 	  songlistwithmp3: [],
 	  songlistwithoutmp3: [],
-	  songlist: [],
+	  songlist: ["And, I cry","Ron's Open Up Your Heart","Ron's My Feet","One Life","Ron's Caveman","I Remember","Ron's Jimmy","Ron's Everybody Knows It (33 Miles)","Ron's Radio","Ron's I Believe","Ron's Guns and Roses","Ron's ...some kind of","Hold On","I Get High","Working On It","Age Is Just A Number","American Haze","In His Love","I Don't Need A Bad Thing 2017","angel","...in the thick of it","Dragon Dreams...there was a time","Slow Train","getten' kind of hazy","Not new to Mischief","Take What's Given","Old Man's Story","Right Time","Like a NY...","Searching","24 kt Lady","Hole in the Ground","Corn Cobs","Deal the Cards","Sweet","Feelin' Like Chocolate","Unknown","Let's Play","Select Drive","Fly Away","Over Easy","Give Me Some Old Time","Lost Lamb","3am Blues","Time Given","Clock Ticking","Second Notice","Ghetto-his momma","Old Blues","Tax Time","Cold Trail","February 2020","No Name","Home Cookin","In the Shallows","Follow the Sun","A Song Full of Story","Beautiful Ramble 2","Wonder of it All","Even If","Give Me Something Sweeter 2","Nothing is All You Need","It's All Just a Dream","Cold and Wet","Down at the Camp","Inside of Me","Chain Gang","Believe","Birds and Bees","Dance With Me","No Doubt About It","Quest","Makin Hay","Here It Comes","Progress Isn't Free","Ready For It","...a frame of time","Crazy World","Dirt Under My Nails","This Time Goes Bye","Summer Time","New Day","Find It","Time Zone","Wooden Box","Holyman Revisited","Wild Flower","Wasteland","Firewood","Inside Out","Say No More Z","Missed the Call","Can't Say No More Final","Into the Fire","In These Days","Forever","Underground 0915","Going for a Walk","When the Snow Falls","Butterfly","Not Enough Time","A Man Who Sees It All","The Spirit Inside V2","Still","Broken Road","So blue in blue","Down On Me","When the Night Calls","3 or Better","Missing","Creamed Turkey On Toast","Lost at Walmart","Enjoy the Time You Have","Until It's Gone","One Sky","Difficult Child","Dust in My Eyes","You Lost It All There Was a Trail of Tears","What You Make It","It's Midnight","In the Right Lane","It's Something Like That","South Fork","Ask the Children","When You're Dead","Know You Better","Tin Plates","Anything, But This","It's Almost Christmas","The Goods"],
+	  
 	  zarfnog: function(thing){
 		return thing.substring(0,thing.length-4)
 	  },
    playlistinit: function(){
-	   this.audioplayer = this.audiocontrolsa
+	   this.audioplayer = document.getElementById("songform")
 	   this.audioplayer.autoplay = true
 		  let thang = new XMLHttpRequest()
 	   thang.onreadystatechange = function(){
 
 	if(this.readyState == 4 && this.status == 200){
 	songlistcreature.songlistwithmp3 = this.responseText.split("~~~")
-		songlistcreature.songlist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
-	songlistcreature.currentsonglist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
+		//songlistcreature.songlist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
+	//songlistcreature.currentsonglist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
+		
 
 
 
@@ -226,7 +150,7 @@ for(i = 0; i < names.length; i++){
 							   }
 					   }
 
-		songlistcreature.songlisttodiv()
+		songlistcreature.songlisttodiv(document.getElementById("songlist"))
 					}
 
 	   }
@@ -246,7 +170,7 @@ for(i = 0; i < names.length; i++){
    },
     songtoplaylist: function(hsong){
 		songlistcreature.songlistitems = []
-		this.playlista.innerHTML = ""
+		document.getElementById("playlist").innerHTML = ""
 		this.currentplaylist.push(hsong)
 		let list = document.createElement("ol")
 		for(i=0;i<this.currentplaylist.length;i++){
@@ -258,7 +182,7 @@ for(i = 0; i < names.length; i++){
 		   songlistcreature.songlistitems.push(song)
 			list.appendChild(song)
 		}
-		this.playlista.appendChild(list)
+		document.getElementById("playlist").appendChild(list)
 		
 	},
   }
