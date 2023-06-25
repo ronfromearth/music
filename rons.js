@@ -134,8 +134,8 @@ for(i = 0; i < names.length; i++){
 
 	if(this.readyState == 4 && this.status == 200){
 	songlistcreature.songlistwithmp3 = this.responseText.split("~~~")
-		//songlistcreature.songlist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
-	//songlistcreature.currentsonglist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
+		songlistcreature.songlist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
+	songlistcreature.currentsonglist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
 		
 
 
