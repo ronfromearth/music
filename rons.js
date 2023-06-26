@@ -1,6 +1,13 @@
 let android = false
-function secretbutton(){
 
+let intervalia = null
+let invervalian = 0
+function secretbutton(){
+intervalia = setInterval(function(){
+	invervalian++
+	songlistcreature.songtoplaylist(songlistcreature.songlist[Math.floor(Math.random() * songlistcreature.songlist.length)])
+	if(invervalian > 50){clearInterval(intervalia)}
+},50)
 }
 function start(){
   songlistcreature.playlistinit()
