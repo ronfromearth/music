@@ -1,4 +1,7 @@
 let android = false
+function secretbutton(){
+
+}
 function start(){
   songlistcreature.playlistinit()
   if(window.innerWidth < window.innerHeight){
