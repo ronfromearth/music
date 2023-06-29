@@ -1,7 +1,10 @@
 
 
  let e = {
-    start: function(){
+    artist: "Ron Elliott",
+
+    start: function(artist){
+    this.artist = artist
     this.div = document.createElement("div")
     document.body.appendChild(this.div)
     this.div.style.backgroundImage = "url(background.png)"
@@ -9,8 +12,38 @@
     this.div.style.backgroundAttachment = "fixed"
     this.div.style.backgroundRepeat = "repeat"
 
-        songlistcreature.init()
+        songlistcreature.init(artist)
         songlistcreature.div.style.display = "block"
+        DeepJS.ele.lo(songlistcreature.div,3/4,0,1/4,1)
+
+        this.title = document.createElement("div")
+            DeepJS.ele.lo(this.title,1/8,1/18,4/8,3/18)
+            this.div.appendChild(this.title)
+            this.title.innerHTML = artist
+            this.title.style.textAlign = "center"
+            this.title.style.fontSize = "4em"
+            this.title.style.display = "flex"
+            this.title.style.alignItems = "center"
+            this.title.style.justifyContent = "center"
+            this.title.style.color = "White"
+            this.title.style.backgroundColor = "rgba(255,255,255,0.1)"
+            this.title.style.borderColor = "White"
+            this.title.style.borderRadius = "7px"
+            this.title.style.borderWidth = "8px"
+        this.text = document.createElement("div")
+         DeepJS.ele.lo(this.text,0.5/8,5/18,5/8,10/18)
+         this.div.appendChild(this.text)
+           this.text.style.color = "White"
+            this.text.style.fontSize = "1.1em"
+            this.text.style.borderColor = "White"
+            this.text.style.borderWidth = "3px"
+            this.text.style.borderRadius = "17px"
+            this.text.style.backgroundColor = "rgba(255,255,255,0.1)"
+            this.text.style.paddingLeft = "17px"
+            this.text.style.paddingTop = "12px"
+            DeepJS.files.find("artisttext.txt",function(words){
+                e.text.innerHTML = words
+            })
         },
 
   }
@@ -46,7 +79,8 @@
 
                     }
                 },
-                init: function(){
+                init: function(artist){
+                this.artist = artist
                 songlistcreature.checkcircuit = setInterval(function(){songlistcreature.update()},20)
                  songlistcreature.div.style.display = "none"
                 DeepJS.ele.lo(songlistcreature.div,0,0,1,1)
@@ -296,7 +330,7 @@
                                             //  this.div.style.backgroundAttachment = "fixed"
                                          //     this.div.style.backgroundRepeat = "repeat"
 
-                                                  songlistcreature.init()
+                                                  songlistcreature.init(who)
                                                   songlistcreature.div.style.display = "block"
                                                   },
 
