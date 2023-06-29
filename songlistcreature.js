@@ -1,7 +1,9 @@
-
+//playlistsongs touchable to play
+//images for buttons
+//loopbtn?
 
  let e = {
-    artist: "Ron Elliott",
+    artist: null,
 
     start: function(artist){
     this.artist = artist
@@ -61,7 +63,7 @@
         divaudioplayer: document.createElement("audio"),
         divplaylist: document.createElement("div"),
 
-        artist: "Ron Elliott",
+        artist: null,
 
         songfolder: "songs",
         songindex: "songlist.txt",
@@ -75,8 +77,6 @@
         update: function(){
                     if(songlistcreature.playing == true){
                     songlistcreature.timemarker.style.width = DeepJS.conversion.percentstring(songlistcreature.divaudioplayer.currentTime / songlistcreature.divaudioplayer.duration)
-
-
                     }
                 },
                 init: function(artist){
@@ -117,6 +117,7 @@
                  songlistcreature.menu.display = "none"
                  document.body.appendChild(songlistcreature.menu)
                  DeepJS.ele.lo(songlistcreature.divsongsearch,1/9,3/18,7/9,1/18)
+
                   songlistcreature.div.appendChild(songlistcreature.divsongsearch)
                   songlistcreature.divsongsearch.style.color = "White"
                   songlistcreature.divsongsearch.style.backgroundColor = "Black"
@@ -159,6 +160,7 @@
                    songlistcreature.timemarker.style.right = "100%"
                    songlistcreature.timemarker.style.top = "0"
                    songlistcreature.timemarker.style.bottom = "0"
+
                    songlistcreature.timemarkerholder.appendChild(songlistcreature.timemarker)
                    songlistcreature.timemarker.style.backgroundColor = "rgba(152, 245, 153, 0.7)"
                    songlistcreature.timemarker.style.borderColor = "White"
@@ -245,6 +247,7 @@
                             }
                     })
 
+
                 },
 
                 songlistaddsong: function(hemsongname){
@@ -278,6 +281,7 @@
                 let hem = document.createElement("div")
                 DeepJS.ele.lo(hem,0,(songlistcreature.playlist.length)*(1/7),1,1/7)
                 hem.innerHTML = hemstring
+                hem.number = songlistcreature.playlist.length
                 hem.style.color = "White"
                 hem.style.userSelect = "none"
                 hem.style.backgroundColor = "rgba(255,255,255,0.2)"
@@ -285,6 +289,7 @@
                 hem.style.borderWidth = "3px"
                 hem.style.borderStyle = "double"
                 hem.extension = extension
+                hem.onclick = function(){songlistcreature.play(hem.number)}
                 songlistcreature.playlist.push(hem)
                 songlistcreature.divplaylist.appendChild(hem)
                     if(songlistcreature.playlist.length == 1){
@@ -316,19 +321,14 @@
                                                        songlistcreature.intervals = 0
                                                        }
                         },20)
-
-
-                },
+},
 
 
                 page: function(who){
                                                 this.artist = who
                                               this.div = document.createElement("div")
                                               document.body.appendChild(this.div)
-                                              //this.div.style.backgroundImage = "url(background.png)"
                                               DeepJS.ele.lo(this.div,0,0,1,1)
-                                            //  this.div.style.backgroundAttachment = "fixed"
-                                         //     this.div.style.backgroundRepeat = "repeat"
 
                                                   songlistcreature.init(who)
                                                   songlistcreature.div.style.display = "block"
