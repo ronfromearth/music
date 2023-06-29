@@ -1,225 +1,263 @@
-let android = false
 
-let intervalia = null
-let invervalian = 0
-function secretbutton(){
-intervalia = setInterval(function(){
-	invervalian++
-	songlistcreature.songtoplaylist(songlistcreature.songlist[Math.floor(Math.random() * songlistcreature.songlist.length)])
-	if(invervalian > 50){clearInterval(intervalia)}
-},50)
-}
-function start(){
-  songlistcreature.playlistinit()
-  if(window.innerWidth < window.innerHeight){
-document.getElementById("ronbtnsongs").style.fontSize = "4em"
-document.getElementById("ronbtnbooks").style.fontSize = "4em"
-document.getElementById("pagetop").style.fontSize = "8em"
-document.getElementById("pagesongs").style.fontSize = "6em"
-document.getElementById("table").style.fontSize = "2em"
-document.getElementById("zarfnog").style.fontSize = "3em"
-document.getElementById("superdiv").style.fontSize = "3em"
-document.getElementById("songsearch").style.fontSize = "1.5em"
-android = true
+
+ let e = {
+    start: function(){
+    this.div = document.createElement("div")
+    document.body.appendChild(this.div)
+    this.div.style.backgroundImage = "url(background.png)"
+    DeepJS.ele.lo(this.div,0,0,1,1)
+    this.div.style.backgroundAttachment = "fixed"
+    this.div.style.backgroundRepeat = "repeat"
+
+        songlistcreature.init()
+        songlistcreature.div.style.display = "block"
+        },
+
   }
-  }
-  function inputchanged(){
-	  let songsearch = document.getElementById("songsearch")
-	  songlistcreature.currentsonglist = songlistcreature.songlist.filter(containstext)
-	  document.getElementById("songlist").innerHTML = ""
-	  songlistcreature.songlisttodiv(document.getElementById("songlist"))
-  }
-  function containstext(song){
-	  if(song.toUpperCase().indexOf(document.getElementById("songsearch").value.toUpperCase()) == -1){return false}else{return true}
-  }
+
+
 
   let songlistcreature = {
+        div: document.createElement("div"),
+        divtitle: document.createElement("div"),
+        divmenubutton: document.createElement("div"),
+                    menu: document.createElement("div"),
+        divsongsearch: document.createElement("input"),
+        divsongs: document.createElement("div"),
+        divaudioplayer: document.createElement("audio"),
+        divplaylist: document.createElement("div"),
 
         artist: "Ron Elliott",
 
-	  allosfavs: ["Wooden Box","Broken Heart 2017","On This Side of Heaven","Underground 0915","Open Up Your Heart","Ron's I Believe","February 2020","New Day","Old Blues","Holyman Revisited","Ron's ...some kind of","Ron's Guns and Roses","I Get High","Down On Me","So blue in blue","Chain Gang"],
-	  //still wildflower
-	  ronsfavs: [],
-
-   songlisttodiv: function(div){
-	   let list = document.createElement("table")
-
-	   let tableheading = document.createElement("tr")
-
-function tableheadingstyle(parent,names){
-for(i = 0; i < names.length; i++){
-  let element = document.createElement("td")
-    element.innerHTML = names[i]
-    element.style.textAlign = "center"
-	   element.style.color = "rgba(84, 215, 255,1)"
-	   element.style.borderBottomStyle = "double"
-       	   element.style.borderBottomColor = "rgba(28, 158, 126,1)"
-       	   element.style.borderBottomWidth = "7px"
-	   parent.appendChild(element)
-}
-   }
-        tableheadingstyle(tableheading,["Song","Links","Description","ReleaseDate","Length","Artists"])
-
-       list.appendChild(tableheading)
-	   for(i=0;i<this.currentsonglist.length;i++){
-	    let songrow = document.createElement("tr")
-
-		   let song = document.createElement("td")
-		   songrow.appendChild(song)
-		   song.innerHTML = this.currentsonglist[i]
-		   song.style.color = "rgba(242, 250, 255,1)"
-		   song.style.textShadow = "2px 2px 8px rgba(35, 66, 53,1)"
-		   song.style.backgroundImage = "radial-gradient(rgba(11, 138, 66,0.3),rgba(109, 212, 99,0.4),rgba(92, 244, 255,0.4))"
+        songfolder: "songs",
+        songindex: "songlist.txt",
+        songlist: [],
+        songs: [],
+        playlist: [],
+        playliston: 0,
+        playing: false,
+        checkcircuit: null,
+        update: function(){
+                    if(songlistcreature.playing == true){
+                    songlistcreature.timemarker.style.width = DeepJS.conversion.percentstring(songlistcreature.divaudioplayer.currentTime / songlistcreature.divaudioplayer.duration)
 
 
-		  let songlinks = document.createElement("td")
-		  songlinks.innerHTML = ""
-		  songlinks.style.color = "White"
-           songrow.appendChild(songlinks)
+                    }
+                },
+                init: function(){
+                songlistcreature.checkcircuit = setInterval(function(){songlistcreature.update()},20)
+                 songlistcreature.div.style.display = "none"
+                DeepJS.ele.lo(songlistcreature.div,0,0,1,1)
+                songlistcreature.div.style.position = "fixed"
+                document.body.appendChild(songlistcreature.div)
+                songlistcreature.div.style.backgroundColor = "black"
+                songlistcreature.div.style.borderColor = "White"
+                songlistcreature.div.style.borderRadius = "15px"
+                songlistcreature.div.style.borderStyle = "double"
+                 songlistcreature.divpretty = document.createElement("div")
+                    DeepJS.ele.lo(songlistcreature.divpretty,1/18,1/36,16/18,34/36)
+                    songlistcreature.div.appendChild(songlistcreature.divpretty)
+                    songlistcreature.divpretty.style.backgroundColor = "rgba(211,211,255,0.1)"
+                    songlistcreature.divpretty.style.borderStyle = "solid"
+                    songlistcreature.divpretty.style.borderWidth = "3px"
+                    songlistcreature.divpretty.style.borderRadius = "7px"
+                    songlistcreature.divpretty.style.borderColor = "white"
+                 DeepJS.ele.lo(songlistcreature.divtitle,1/9,1/18,7/9,2/18)
+                songlistcreature.div.appendChild(songlistcreature.divtitle)
+                songlistcreature.divtitle.innerHTML = songlistcreature.artist
+                 songlistcreature.divtitle.style.margin = "auto"
+                songlistcreature.divtitle.style.color = "White"
+                songlistcreature.divtitle.style.borderColor = "White"
+                songlistcreature.divtitle.style.borderWidth = "7px"
+                songlistcreature.divtitle.style.borderStyle = "double"
+                songlistcreature.divtitle.style.borderRadius = "17px"
+                songlistcreature.divtitle.style.textAlign = "center"
+                songlistcreature.divtitle.style.align = "center"
+                songlistcreature.divtitle.style.fontSize = "2.7em"
+                 DeepJS.ele.lo(songlistcreature.divmenubutton,1/9,1/18,1/9,1/18)
+                songlistcreature.div.appendChild(songlistcreature.divmenubutton)
+                 DeepJS.ele.lo(songlistcreature.menu,1/2,0,1/4,1)
+                 songlistcreature.menu.style.position = "fixed"
+                 songlistcreature.menu.display = "none"
+                 document.body.appendChild(songlistcreature.menu)
+                 DeepJS.ele.lo(songlistcreature.divsongsearch,1/9,3/18,7/9,1/18)
+                  songlistcreature.div.appendChild(songlistcreature.divsongsearch)
+                  songlistcreature.divsongsearch.style.color = "White"
+                  songlistcreature.divsongsearch.style.backgroundColor = "Black"
+                  songlistcreature.divsongsearch.placeholder = "search"
+                  songlistcreature.divsongsearch.style.textAlign = "center"
+                  songlistcreature.divsongsearch.oninput = function(){
+                  songlistcreature.divsongs.innerHTML = ""
+                  	  for(this.eee = 0; this.eee < songlistcreature.songlist.length; this.eee++){
+                        if(songlistcreature.songlist[this.eee].toUpperCase().indexOf(songlistcreature.divsongsearch.value.toUpperCase()) != -1){
+                        songlistcreature.songlistaddsong(songlistcreature.songlist[this.eee])
+                        }
+                  	  }
+                    }
+                 DeepJS.ele.lo(songlistcreature.divsongs,1/9,4/18,7/9,6/18)
+                   songlistcreature.div.appendChild(songlistcreature.divsongs)
+                                   songlistcreature.divsongs.style.overflow = "scroll"
+                                   songlistcreature.divsongs.style.userSelect = "none"
+                                   songlistcreature.divsongs.style.backgroundColor = "Black"
+                                   songlistcreature.divsongs.style.borderColor = "White"
+                                   songlistcreature.divsongs.style.borderWidth = "3px"
+                                   songlistcreature.divsongs.style.borderStyle = "double"
+                                   songlistcreature.divsongs.style.borderRadius = "7px"
+                 DeepJS.ele.lo(songlistcreature.divaudioplayer,1/9,10/18,7/9,1/18)
+                   songlistcreature.div.appendChild(songlistcreature.divaudioplayer)
+                   songlistcreature.divaudioplayer.controls = false
+                   songlistcreature.divaudioplayer.autoplay = true
+                   songlistcreature.divaudioplayer.onended = function(){
+                   songlistcreature.playliston = songlistcreature.playliston + 1
+                   if(songlistcreature.playliston > songlistcreature.playlist.length-1){songlistcreature.playliston = 0}
+                   songlistcreature.play(songlistcreature.playliston)
+                   }
+                   songlistcreature.divaudioplayer.onready = function(){songlistcreature.divaudioplayer.play()}
+                 songlistcreature.timemarkerholder = document.createElement("div")
+                                      DeepJS.ele.lo(songlistcreature.timemarkerholder,1/9,10/18,7/9,1/18)
+                                      songlistcreature.div.appendChild(songlistcreature.timemarkerholder)
+                 songlistcreature.timemarker = document.createElement("div")
+                   songlistcreature.timemarker.style.position = "absolute"
+                   songlistcreature.timemarker.style.left = "0"
+                   songlistcreature.timemarker.style.right = "100%"
+                   songlistcreature.timemarker.style.top = "0"
+                   songlistcreature.timemarker.style.bottom = "0"
+                   songlistcreature.timemarkerholder.appendChild(songlistcreature.timemarker)
+                   songlistcreature.timemarker.style.backgroundColor = "rgba(152, 245, 153, 0.7)"
+                   songlistcreature.timemarker.style.borderColor = "White"
+                   songlistcreature.timemarker.style.borderWidth = "1px"
+                   songlistcreature.timemarker.style.borderStyle = "solid"
+                   songlistcreature.timemarker.style.borderRadius = "7px"
+                 songlistcreature.divtrackname = document.createElement("div")
+                                        DeepJS.ele.lo(songlistcreature.divtrackname,1/9,10/18,7/9,1/18)
+                                                         songlistcreature.div.appendChild(songlistcreature.divtrackname)
+                                                         songlistcreature.divtrackname.style.color = "White"
+                                                         songlistcreature.divtrackname.style.textSize = "1.2em"
+                                                         songlistcreature.divtrackname.style.borderColor = "White"
+                                                         songlistcreature.divtrackname.style.borderWidth = "1px"
+                                                         songlistcreature.divtrackname.style.borderStyle = "solid"
+                                                         songlistcreature.divtrackname.style.borderRadius = "7px"
+                                                         songlistcreature.divtrackname.style.textAlign = "center"
+                                                         songlistcreature.divtrackname.style.userSelect = "none"
+                                                         songlistcreature.divtrackname.onmouseup = function(e){
+                                                            songlistcreature.divaudioplayer.currentTime = Math.round((e.layerX / songlistcreature.divtrackname.getBoundingClientRect().width) * songlistcreature.divaudioplayer.duration)
+                                                         }
+                 DeepJS.ele.lo(songlistcreature.divplaylist,2/9,11/18,6/9,6/18)
+                   songlistcreature.div.appendChild(songlistcreature.divplaylist)
+                   songlistcreature.divplaylist.style.borderColor = "White"
+                   songlistcreature.divplaylist.style.borderWidth = "7px"
+                   songlistcreature.divplaylist.style.borderStyle = "double"
+                   songlistcreature.divplaylist.style.borderRadius = "17px"
+                   songlistcreature.divplaylist.style.overflow = "scroll"
+                 songlistcreature.divplaylist.menubar = document.createElement("div")
+                                DeepJS.ele.lo(songlistcreature.divplaylist.menubar,1/9,11/18,1/9,6/18)
+                                songlistcreature.div.appendChild(songlistcreature.divplaylist.menubar)
+                                songlistcreature.divplaylist.menubar.style.backgroundImage = "linear-gradient(to top, rgba(38, 19, 71, 0.7),rgba(213, 230, 165, 0.7))"
+                                songlistcreature.divplaylist.menubar.style.borderStyle = "double"
+                                songlistcreature.divplaylist.menubar.style.borderColor = "White"
+                                songlistcreature.divplaylist.menubar.style.borderWidth = "7px"
+                                songlistcreature.divplaylist.menubar.style.borderRadius = "7px"
+                 songlistcreature.divplaylist.menubar.btnplay = document.createElement("div")
+                                            DeepJS.ele.lo(songlistcreature.divplaylist.menubar.btnplay,0,0,1,1/6)
+                                            songlistcreature.divplaylist.menubar.appendChild(songlistcreature.divplaylist.menubar.btnplay)
+                                            songlistcreature.divplaylist.menubar.btnplay.style.borderStyle = "solid"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.borderColor = "white"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.borderRadius = "7px"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.userSelect = "none"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.backgroundColor = "rgba(255,255,255,0.8)"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.color = "Black"
+                                            songlistcreature.divplaylist.menubar.btnplay.innerHTML = "Play"
+                                            songlistcreature.divplaylist.menubar.btnplay.onclick = function(){
+                                                if(songlistcreature.divaudioplayer.paused == true){
+                                                songlistcreature.divaudioplayer.play()
+                                                songlistcreature.playing = true
+                                                songlistcreature.divtrackname.style.color = "Green"
+                                                songlistcreature.divplaylist.menubar.btnplay.style.backgroundColor = "rgba(66, 255, 95, 1)"
+                                                }else{
+                                                songlistcreature.divaudioplayer.pause()
+                                                songlistcreature.playing = false
+                                                songlistcreature.divtrackname.style.color = "White"
+                                                songlistcreature.divplaylist.menubar.btnplay.style.backgroundColor = "rgba(255, 255, 255, 1)"
+                                                }
+                                            }
+                 songlistcreature.divplaylist.menubar.btnshuffle = document.createElement("div")
+                                                                                        DeepJS.ele.lo(songlistcreature.divplaylist.menubar.btnshuffle,0,1/6,1,1/6)
+                                                                                        songlistcreature.divplaylist.menubar.appendChild(songlistcreature.divplaylist.menubar.btnshuffle)
+                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.borderStyle = "solid"
+                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.borderColor = "white"
+                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.borderRadius = "7px"
+                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.backgroundColor = "rgba(255,255,255,0.8)"
+                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.color = "Black"
+                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.innerHTML = "Shuffle"
+                 songlistcreature.divplaylist.menubar.btnloop = document.createElement("div")
+                                                                                        DeepJS.ele.lo(songlistcreature.divplaylist.menubar.btnloop,0,2/6,1,1/6)
+                                                                                        songlistcreature.divplaylist.menubar.appendChild(songlistcreature.divplaylist.menubar.btnloop)
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.borderStyle = "solid"
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.borderColor = "white"
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.borderRadius = "7px"
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.backgroundColor = "rgba(255,255,255,0.8)"
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.color = "Black"
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.innerHTML = "Loop"
+//smell of plants just getting first rain
+                    DeepJS.files.find(songlistcreature.songindex, function(foundstring){
+                        songlistcreature.songlist = foundstring.split("~~~")
+                            for(songlistcreature.yy = 0; songlistcreature.yy < songlistcreature.songlist.length; songlistcreature.yy++){
+                              songlistcreature.songlistaddsong(songlistcreature.songlist[songlistcreature.yy])
+                            }
+                    })
 
-          let songdescription = document.createElement("td")
-          songdescription.innerHTML = ""
-          songdescription.style.color = "White"
-          songrow.appendChild(songdescription)
+                },
 
-          let songreleasedate = document.createElement("td")
-          songreleasedate.innerHTML = ""
-          songreleasedate.style.color = "White"
-          songrow.appendChild(songreleasedate)
+                songlistaddsong: function(hemsongname){
+                    let song = {
+                          name: hemsongname.substring(0,hemsongname.indexOf(".")),
+                          extension: hemsongname.substring(hemsongname.indexOf("."),hemsongname.length),
+                          div: document.createElement("div"),
+                          number: songlistcreature.divsongs.children.length,
+                                                        init: function(){
+                                                            this.div.style.position = "absolute"
+                                                            this.div.style.left = "0"
+                                                            this.div.style.right = "0"
+                                                            this.div.style.top = DeepJS.conversion.percentstring(this.number*1/7)
+                                                            this.div.style.bottom = DeepJS.conversion.percentstring(6/7-(this.number*1/7))
+                                                            this.div.innerHTML = this.name
+                                                            this.div.style.color = "White"
+                                                            this.div.style.borderColor = "Black"
+                                                            this.div.style.borderStyle = "solid"
+                                                            this.div.style.borderWidth = "7px"
+                                                            this.div.onclick = function(){
+                                                            songlistcreature.addtoplaylist(this.name,this.extension)}.bind(this)
+                                                            },
+                                                    }
+                                                    song.init()
+                                                    songlistcreature.divsongs.appendChild(song.div)
+                },
 
-          let songlength = document.createElement("td")
-          songlength.innerHTML = ""
-          songlength.style.color = "White"
-          songrow.appendChild(songlength)
+            addtoplaylist: function(hemstring,extension){
+                let hem = document.createElement("div")
+                DeepJS.ele.lo(hem,0,(songlistcreature.playlist.length)*(1/7),1,1/7)
+                hem.innerHTML = hemstring
+                hem.style.color = "White"
+                hem.style.userSelect = "none"
+                hem.style.backgroundColor = "rgba(255,255,255,0.2)"
+                hem.style.borderColor = "White"
+                hem.style.borderWidth = "3px"
+                hem.style.borderStyle = "double"
+                hem.extension = extension
+                songlistcreature.playlist.push(hem)
+                songlistcreature.divplaylist.appendChild(hem)
+                    if(songlistcreature.playlist.length == 1){
+                        songlistcreature.play(0)
+                    }
+            },
 
-          let songbeings = document.createElement("select")
-          songbeingsoptionone = document.createElement("option")
-          songbeingsoptionone.innerHTML = this.artist
-          songbeings.appendChild(songbeingsoptionone)
-          songrow.appendChild(songbeings)
+                play: function(playlistnumber){
+                    songlistcreature.divtrackname.style.color = "Green"
+                    songlistcreature.divplaylist.menubar.btnplay.style.backgroundColor = "rgba(66, 255, 95, 1)"
+                    songlistcreature.divtrackname.innerHTML = songlistcreature.playlist[playlistnumber].innerHTML
+                    songlistcreature.divaudioplayer.src = "songs/"+songlistcreature.playlist[playlistnumber].innerHTML + songlistcreature.playlist[playlistnumber].extension
+                    songlistcreature.divaudioplayer.play()
+                    songlistcreature.playing = true
+                },
 
-		   song.onclick = function(){songlistcreature.songtoplaylist(song.innerHTML)
-		   if(songlistcreature.currentplaylist.length == 1){
-			   				   songlistcreature.playsong(song.innerHTML)
-		   }
-		   }
-		   list.appendChild(songrow)
-		   
-	   }
-	   div.appendChild(list)
-   },
-   
-   showsongtoggle: function(){
-	   document.getElementById("pagesongs").scrollIntoView()
-	   if(document.getElementById('superdiv').style.display == "none"){
-		   document.getElementById('superdiv').style.display = "inline"
-	   }
-	   else{
-		   document.getElementById('superdiv').style.display = "none"
-	   }
-   },
-   
-   currentplaylist: [],
-	  currentsonglist: ["And, I cry","Ron's Open Up Your Heart","Ron's My Feet","One Life","Ron's Caveman","I Remember","Ron's Jimmy","Ron's Everybody Knows It (33 Miles)","Ron's Radio","Ron's I Believe","Ron's Guns and Roses","Ron's ...some kind of","Hold On","I Get High","Working On It","Age Is Just A Number","American Haze","In His Love","I Don't Need A Bad Thing 2017","angel","...in the thick of it","Dragon Dreams...there was a time","Slow Train","getten' kind of hazy","Not new to Mischief","Take What's Given","Old Man's Story","Right Time","Like a NY...","Searching","24 kt Lady","Hole in the Ground","Corn Cobs","Deal the Cards","Sweet","Feelin' Like Chocolate","Unknown","Let's Play","Select Drive","Fly Away","Over Easy","Give Me Some Old Time","Lost Lamb","3am Blues","Time Given","Clock Ticking","Second Notice","Ghetto-his momma","Old Blues","Tax Time","Cold Trail","February 2020","No Name","Home Cookin","In the Shallows","Follow the Sun","A Song Full of Story","Beautiful Ramble 2","Wonder of it All","Even If","Give Me Something Sweeter 2","Nothing is All You Need","It's All Just a Dream","Cold and Wet","Down at the Camp","Inside of Me","Chain Gang","Believe","Birds and Bees","Dance With Me","No Doubt About It","Quest","Makin Hay","Here It Comes","Progress Isn't Free","Ready For It","...a frame of time","Crazy World","Dirt Under My Nails","This Time Goes Bye","Summer Time","New Day","Find It","Time Zone","Wooden Box","Holyman Revisited","Wild Flower","Wasteland","Firewood","Inside Out","Say No More Z","Missed the Call","Can't Say No More Final","Into the Fire","In These Days","Forever","Underground 0915","Going for a Walk","When the Snow Falls","Butterfly","Not Enough Time","A Man Who Sees It All","The Spirit Inside V2","Still","Broken Road","So blue in blue","Down On Me","When the Night Calls","3 or Better","Missing","Creamed Turkey On Toast","Lost at Walmart","Enjoy the Time You Have","Until It's Gone","One Sky","Difficult Child","Dust in My Eyes","You Lost It All There Was a Trail of Tears","What You Make It","It's Midnight","In the Right Lane","It's Something Like That","South Fork","Ask the Children","When You're Dead","Know You Better","Tin Plates","Anything, But This","It's Almost Christmas","The Goods"],
-
-   playlist: [],
-   songlistitems: [],
-   audioplayer: null,
-   audioplayerplaying: false,
-   audioplayerlooping: false,
-   playingsong: null,
-   playingsongnumber: null,
-	  songlistwithmp3: [],
-	  songlistwithoutmp3: [],
-	  songlist: ["And, I cry","Ron's Open Up Your Heart","Ron's My Feet","One Life","Ron's Caveman","I Remember","Ron's Jimmy","Ron's Everybody Knows It (33 Miles)","Ron's Radio","Ron's I Believe","Ron's Guns and Roses","Ron's ...some kind of","Hold On","I Get High","Working On It","Age Is Just A Number","American Haze","In His Love","I Don't Need A Bad Thing 2017","angel","...in the thick of it","Dragon Dreams...there was a time","Slow Train","getten' kind of hazy","Not new to Mischief","Take What's Given","Old Man's Story","Right Time","Like a NY...","Searching","24 kt Lady","Hole in the Ground","Corn Cobs","Deal the Cards","Sweet","Feelin' Like Chocolate","Unknown","Let's Play","Select Drive","Fly Away","Over Easy","Give Me Some Old Time","Lost Lamb","3am Blues","Time Given","Clock Ticking","Second Notice","Ghetto-his momma","Old Blues","Tax Time","Cold Trail","February 2020","No Name","Home Cookin","In the Shallows","Follow the Sun","A Song Full of Story","Beautiful Ramble 2","Wonder of it All","Even If","Give Me Something Sweeter 2","Nothing is All You Need","It's All Just a Dream","Cold and Wet","Down at the Camp","Inside of Me","Chain Gang","Believe","Birds and Bees","Dance With Me","No Doubt About It","Quest","Makin Hay","Here It Comes","Progress Isn't Free","Ready For It","...a frame of time","Crazy World","Dirt Under My Nails","This Time Goes Bye","Summer Time","New Day","Find It","Time Zone","Wooden Box","Holyman Revisited","Wild Flower","Wasteland","Firewood","Inside Out","Say No More Z","Missed the Call","Can't Say No More Final","Into the Fire","In These Days","Forever","Underground 0915","Going for a Walk","When the Snow Falls","Butterfly","Not Enough Time","A Man Who Sees It All","The Spirit Inside V2","Still","Broken Road","So blue in blue","Down On Me","When the Night Calls","3 or Better","Missing","Creamed Turkey On Toast","Lost at Walmart","Enjoy the Time You Have","Until It's Gone","One Sky","Difficult Child","Dust in My Eyes","You Lost It All There Was a Trail of Tears","What You Make It","It's Midnight","In the Right Lane","It's Something Like That","South Fork","Ask the Children","When You're Dead","Know You Better","Tin Plates","Anything, But This","It's Almost Christmas","The Goods"],
-	  
-	  zarfnog: function(thing){
-		return thing.substring(0,thing.length-4)
-	  },
-   playlistinit: function(){
-	   this.audioplayer = document.getElementById("songform")
-	   this.audioplayer.autoplay = true
-		  let thang = new XMLHttpRequest()
-	   thang.onreadystatechange = function(){
-
-	if(this.readyState == 4 && this.status == 200){
-	songlistcreature.songlistwithmp3 = this.responseText.split("~~~")
-		songlistcreature.songlist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
-	songlistcreature.currentsonglist = songlistcreature.songlistwithmp3.map(songlistcreature.zarfnog)
-		
-
-
-
-	 				  songlistcreature.audioplayer.onended = function(){
-		  				 if(songlistcreature.audioplayerlooping == false){
-			 				  if(songlistcreature.playingsongnumber == songlistcreature.currentplaylist.length - 1){
-									   songlistcreature.playsong(songlistcreature.currentplaylist[0])
-								   }else{
-										   songlistcreature.playsong(songlistcreature.currentplaylist[songlistcreature.playingsongnumber+1])
-			  								 }
-							   }
-					   }
-
-		songlistcreature.songlisttodiv(document.getElementById("songlist"))
-					}
-
-	   }
-
-	   thang.open("GET","songlist.txt",true)
-	   thang.send()
-   },
-   playsong: function(song){
-	   this.audioplayer.pause()
-	   this.audioplayer.src = "songs/"+song+".mp3"
-	   this.audioplayer.play()
-	   this.audioplayer.playing = true
-	   this.playingsong = song
-	   for(i=0;i<this.currentplaylist.length;i++){
-		   if(this.currentplaylist[i] == song){this.playingsongnumber = i}
-	   }
-   },
-    songtoplaylist: function(hsong){
-		songlistcreature.songlistitems = []
-		document.getElementById("playlist").innerHTML = ""
-		this.currentplaylist.push(hsong)
-		let list = document.createElement("ol")
-		for(i=0;i<this.currentplaylist.length;i++){
-		   let song = document.createElement("li")
-		   song.innerHTML = this.currentplaylist[i]
-		   song.style.color = "White"
-		   song.style.backgroundColor = "rgba(255,255,255,0.3)"
-		   song.onclick = function(){songlistcreature.playsong(song.innerHTML)}
-		   songlistcreature.songlistitems.push(song)
-			list.appendChild(song)
-		}
-		document.getElementById("playlist").appendChild(list)
-		
-	},
-  }
-  
-
-  
-  
-  
-  
-  
-  
-  let Song = {
-	  displayelement: null,
-	  playlistplaces: [],
-	  url: null,
-	  name: null,
-	  duration: null,
-	  timeposition: null,
-	  playshistory: null,
-	  looping: false,
-	  albumart: null,
-	  
-	  
-	  
-	  
-  }
-  
-  
-
-
+       }
