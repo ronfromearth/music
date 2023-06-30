@@ -1,6 +1,7 @@
-//playlistsongs touchable to play
 //images for buttons
-//loopbtn?
+//size autoplayers
+//singlelinetext?
+
 
  let e = {
     artist: null,
@@ -8,16 +9,14 @@
     start: function(artist){
     this.artist = artist
     this.div = document.createElement("div")
+    DeepJS.ele.lo(this.div,0,0,1,1)
     document.body.appendChild(this.div)
     this.div.style.backgroundImage = "url(background.png)"
-    DeepJS.ele.lo(this.div,0,0,1,1)
     this.div.style.backgroundAttachment = "fixed"
     this.div.style.backgroundRepeat = "repeat"
-
         songlistcreature.init(artist)
         songlistcreature.div.style.display = "block"
         DeepJS.ele.lo(songlistcreature.div,3/4,0,1/4,1)
-
         this.title = document.createElement("div")
             DeepJS.ele.lo(this.title,1/8,1/18,4/8,3/18)
             this.div.appendChild(this.title)
@@ -29,16 +28,12 @@
             this.title.style.justifyContent = "center"
             this.title.style.color = "White"
             this.title.style.backgroundColor = "rgba(255,255,255,0.1)"
-            this.title.style.borderColor = "White"
-            this.title.style.borderRadius = "7px"
-            this.title.style.borderWidth = "8px"
+            this.title.style.borderRadius = "17px"
         this.text = document.createElement("div")
          DeepJS.ele.lo(this.text,0.5/8,5/18,5/8,10/18)
          this.div.appendChild(this.text)
            this.text.style.color = "White"
             this.text.style.fontSize = "1.1em"
-            this.text.style.borderColor = "White"
-            this.text.style.borderWidth = "3px"
             this.text.style.borderRadius = "17px"
             this.text.style.backgroundColor = "rgba(255,255,255,0.1)"
             this.text.style.paddingLeft = "17px"
@@ -64,7 +59,7 @@
         divplaylist: document.createElement("div"),
 
         artist: null,
-
+        looping: false,
         songfolder: "songs",
         songindex: "songlist.txt",
         songlist: [],
@@ -104,24 +99,24 @@
                  songlistcreature.divtitle.style.margin = "auto"
                 songlistcreature.divtitle.style.color = "White"
                 songlistcreature.divtitle.style.borderColor = "White"
-                songlistcreature.divtitle.style.borderWidth = "7px"
+                songlistcreature.divtitle.style.borderWidth = "3px"
                 songlistcreature.divtitle.style.borderStyle = "double"
-                songlistcreature.divtitle.style.borderRadius = "17px"
+                songlistcreature.divtitle.style.borderTopLeftRadius = "7px"
+                songlistcreature.divtitle.style.borderTopRightRadius = "7px"
                 songlistcreature.divtitle.style.textAlign = "center"
                 songlistcreature.divtitle.style.align = "center"
                 songlistcreature.divtitle.style.fontSize = "2.7em"
-                 DeepJS.ele.lo(songlistcreature.divmenubutton,1/9,1/18,1/9,1/18)
-                songlistcreature.div.appendChild(songlistcreature.divmenubutton)
-                 DeepJS.ele.lo(songlistcreature.menu,1/2,0,1/4,1)
-                 songlistcreature.menu.style.position = "fixed"
-                 songlistcreature.menu.display = "none"
-                 document.body.appendChild(songlistcreature.menu)
                  DeepJS.ele.lo(songlistcreature.divsongsearch,1/9,3/18,7/9,1/18)
-
                   songlistcreature.div.appendChild(songlistcreature.divsongsearch)
                   songlistcreature.divsongsearch.style.color = "White"
                   songlistcreature.divsongsearch.style.backgroundColor = "Black"
                   songlistcreature.divsongsearch.placeholder = "search"
+                  songlistcreature.divsongsearch.style.borderRightStyle = "double"
+                  songlistcreature.divsongsearch.style.borderRightWidth = "3px"
+                  songlistcreature.divsongsearch.style.borderRightColor = "White"
+                    songlistcreature.divsongsearch.style.borderLeftStyle = "double"
+                    songlistcreature.divsongsearch.style.borderLeftWidth = "3px"
+                    songlistcreature.divsongsearch.style.borderLeftColor = "White"
                   songlistcreature.divsongsearch.style.textAlign = "center"
                   songlistcreature.divsongsearch.oninput = function(){
                   songlistcreature.divsongs.innerHTML = ""
@@ -137,45 +132,49 @@
                                    songlistcreature.divsongs.style.overflow = "scroll"
                                    songlistcreature.divsongs.style.userSelect = "none"
                                    songlistcreature.divsongs.style.backgroundColor = "Black"
-                                   songlistcreature.divsongs.style.borderColor = "White"
-                                   songlistcreature.divsongs.style.borderWidth = "3px"
-                                   songlistcreature.divsongs.style.borderStyle = "double"
-                                   songlistcreature.divsongs.style.borderRadius = "7px"
+                  songlistcreature.divsongs.style.borderRightStyle = "double"
+                  songlistcreature.divsongs.style.borderRightWidth = "3px"
+                  songlistcreature.divsongs.style.borderRightColor = "White"
+                    songlistcreature.divsongs.style.borderLeftStyle = "double"
+                    songlistcreature.divsongs.style.borderLeftWidth = "3px"
+                    songlistcreature.divsongs.style.borderLeftColor = "White"
                  DeepJS.ele.lo(songlistcreature.divaudioplayer,1/9,10/18,7/9,1/18)
                    songlistcreature.div.appendChild(songlistcreature.divaudioplayer)
                    songlistcreature.divaudioplayer.controls = false
                    songlistcreature.divaudioplayer.autoplay = true
                    songlistcreature.divaudioplayer.onended = function(){
+                        if(songlistcreature.looping == true){songlistcreature.play(0)}
+                        else{
                    songlistcreature.playliston = songlistcreature.playliston + 1
                    if(songlistcreature.playliston > songlistcreature.playlist.length-1){songlistcreature.playliston = 0}
                    songlistcreature.play(songlistcreature.playliston)
-                   }
+                   }}
                    songlistcreature.divaudioplayer.onready = function(){songlistcreature.divaudioplayer.play()}
                  songlistcreature.timemarkerholder = document.createElement("div")
                                       DeepJS.ele.lo(songlistcreature.timemarkerholder,1/9,10/18,7/9,1/18)
                                       songlistcreature.div.appendChild(songlistcreature.timemarkerholder)
+                                                        songlistcreature.timemarkerholder.style.borderRightStyle = "double"
+                                                        songlistcreature.timemarkerholder.style.borderRightWidth = "3px"
+                                                        songlistcreature.timemarkerholder.style.borderRightColor = "White"
+                                                          songlistcreature.timemarkerholder.style.borderLeftStyle = "double"
+                                                          songlistcreature.timemarkerholder.style.borderLeftWidth = "3px"
+                                                          songlistcreature.timemarkerholder.style.borderLeftColor = "White"
+                                                                                                                    songlistcreature.timemarkerholder.style.borderBottomStyle = "double"
+                                                                                                                    songlistcreature.timemarkerholder.style.borderBottomWidth = "3px"
+                                                                                                                    songlistcreature.timemarkerholder.style.borderBottomColor = "White"
                  songlistcreature.timemarker = document.createElement("div")
                    songlistcreature.timemarker.style.position = "absolute"
                    songlistcreature.timemarker.style.left = "0"
                    songlistcreature.timemarker.style.right = "100%"
                    songlistcreature.timemarker.style.top = "0"
                    songlistcreature.timemarker.style.bottom = "0"
-
                    songlistcreature.timemarkerholder.appendChild(songlistcreature.timemarker)
                    songlistcreature.timemarker.style.backgroundColor = "rgba(152, 245, 153, 0.7)"
-                   songlistcreature.timemarker.style.borderColor = "White"
-                   songlistcreature.timemarker.style.borderWidth = "1px"
-                   songlistcreature.timemarker.style.borderStyle = "solid"
-                   songlistcreature.timemarker.style.borderRadius = "7px"
                  songlistcreature.divtrackname = document.createElement("div")
                                         DeepJS.ele.lo(songlistcreature.divtrackname,1/9,10/18,7/9,1/18)
                                                          songlistcreature.div.appendChild(songlistcreature.divtrackname)
                                                          songlistcreature.divtrackname.style.color = "White"
                                                          songlistcreature.divtrackname.style.textSize = "1.2em"
-                                                         songlistcreature.divtrackname.style.borderColor = "White"
-                                                         songlistcreature.divtrackname.style.borderWidth = "1px"
-                                                         songlistcreature.divtrackname.style.borderStyle = "solid"
-                                                         songlistcreature.divtrackname.style.borderRadius = "7px"
                                                          songlistcreature.divtrackname.style.textAlign = "center"
                                                          songlistcreature.divtrackname.style.userSelect = "none"
                                                          songlistcreature.divtrackname.onmouseup = function(e){
@@ -183,40 +182,50 @@
                                                          }
                  DeepJS.ele.lo(songlistcreature.divplaylist,2/9,11/18,6/9,6/18)
                    songlistcreature.div.appendChild(songlistcreature.divplaylist)
-                   songlistcreature.divplaylist.style.borderColor = "White"
-                   songlistcreature.divplaylist.style.borderWidth = "7px"
-                   songlistcreature.divplaylist.style.borderStyle = "double"
-                   songlistcreature.divplaylist.style.borderRadius = "17px"
+                                                           songlistcreature.divplaylist.style.borderRightStyle = "double"
+                                                           songlistcreature.divplaylist.style.borderRightWidth = "3px"
+                                                           songlistcreature.divplaylist.style.borderRightColor = "White"
+                                                             songlistcreature.divplaylist.style.borderLeftStyle = "double"
+                                                             songlistcreature.divplaylist.style.borderLeftWidth = "3px"
+                                                             songlistcreature.divplaylist.style.borderLeftColor = "White"
+                                                                                                                          songlistcreature.divplaylist.style.borderBottomStyle = "double"
+                                                                                                                          songlistcreature.divplaylist.style.borderBottomWidth = "3px"
+                                                                                                                          songlistcreature.divplaylist.style.borderBottomColor = "White"
+                                                             songlistcreature.divplaylist.style.borderBottomRightRadius = "7px"
                    songlistcreature.divplaylist.style.overflow = "scroll"
                  songlistcreature.divplaylist.menubar = document.createElement("div")
                                 DeepJS.ele.lo(songlistcreature.divplaylist.menubar,1/9,11/18,1/9,6/18)
                                 songlistcreature.div.appendChild(songlistcreature.divplaylist.menubar)
-                                songlistcreature.divplaylist.menubar.style.backgroundImage = "linear-gradient(to top, rgba(38, 19, 71, 0.7),rgba(213, 230, 165, 0.7))"
-                                songlistcreature.divplaylist.menubar.style.borderStyle = "double"
-                                songlistcreature.divplaylist.menubar.style.borderColor = "White"
-                                songlistcreature.divplaylist.menubar.style.borderWidth = "7px"
-                                songlistcreature.divplaylist.menubar.style.borderRadius = "7px"
-                 songlistcreature.divplaylist.menubar.btnplay = document.createElement("div")
+                                songlistcreature.divplaylist.menubar.style.backgroundColor = "Black"
+                                songlistcreature.divplaylist.menubar.style.borderBottomStyle = "double"
+                                                             songlistcreature.divplaylist.menubar.style.borderBottomWidth = "3px"
+                                                             songlistcreature.divplaylist.menubar.style.borderBottomColor = "White"
+                                                             songlistcreature.divplaylist.menubar.style.borderLeftStyle = "double"
+                                                             songlistcreature.divplaylist.menubar.style.borderLeftWidth = "3px"
+                                                             songlistcreature.divplaylist.menubar.style.borderLeftColor = "White"
+                                                             songlistcreature.divplaylist.menubar.style.borderBottomLeftRadius = "7px"
+                  songlistcreature.divplaylist.menubar.btnplay = document.createElement("div")
                                             DeepJS.ele.lo(songlistcreature.divplaylist.menubar.btnplay,0,0,1,1/6)
                                             songlistcreature.divplaylist.menubar.appendChild(songlistcreature.divplaylist.menubar.btnplay)
                                             songlistcreature.divplaylist.menubar.btnplay.style.borderStyle = "solid"
                                             songlistcreature.divplaylist.menubar.btnplay.style.borderColor = "white"
                                             songlistcreature.divplaylist.menubar.btnplay.style.borderRadius = "7px"
                                             songlistcreature.divplaylist.menubar.btnplay.style.userSelect = "none"
-                                            songlistcreature.divplaylist.menubar.btnplay.style.backgroundColor = "rgba(255,255,255,0.8)"
-                                            songlistcreature.divplaylist.menubar.btnplay.style.color = "Black"
-                                            songlistcreature.divplaylist.menubar.btnplay.innerHTML = "Play"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.backgroundImage = "url(icons/Pause.png)"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.backgroundSize = "100% auto"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.color = "White"
                                             songlistcreature.divplaylist.menubar.btnplay.onclick = function(){
                                                 if(songlistcreature.divaudioplayer.paused == true){
                                                 songlistcreature.divaudioplayer.play()
+                                                songlistcreature.divplaylist.menubar.btnplay.style.backgroundImage = "url(icons/Pause.png)"
                                                 songlistcreature.playing = true
-                                                songlistcreature.divtrackname.style.color = "Green"
-                                                songlistcreature.divplaylist.menubar.btnplay.style.backgroundColor = "rgba(66, 255, 95, 1)"
+
                                                 }else{
                                                 songlistcreature.divaudioplayer.pause()
+                                                songlistcreature.divplaylist.menubar.btnplay.style.backgroundImage = "url(icons/Play.png)"
                                                 songlistcreature.playing = false
                                                 songlistcreature.divtrackname.style.color = "White"
-                                                songlistcreature.divplaylist.menubar.btnplay.style.backgroundColor = "rgba(255, 255, 255, 1)"
+
                                                 }
                                             }
                  songlistcreature.divplaylist.menubar.btnshuffle = document.createElement("div")
@@ -225,20 +234,33 @@
                                                                                         songlistcreature.divplaylist.menubar.btnshuffle.style.borderStyle = "solid"
                                                                                         songlistcreature.divplaylist.menubar.btnshuffle.style.borderColor = "white"
                                                                                         songlistcreature.divplaylist.menubar.btnshuffle.style.borderRadius = "7px"
-                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.backgroundColor = "rgba(255,255,255,0.8)"
+                                            songlistcreature.divplaylist.menubar.btnshuffle.style.backgroundImage = "url(icons/Shuffle.png)"
+                                            songlistcreature.divplaylist.menubar.btnshuffle.style.backgroundSize = "100% auto"
                                                                                         songlistcreature.divplaylist.menubar.btnshuffle.style.color = "Black"
-                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.innerHTML = "Shuffle50"
                                                                                         songlistcreature.divplaylist.menubar.btnshuffle.style.userSelect = "none"
-                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.onclick = function(){songlistcreature.shufflefifty()}
+                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.onclick = function(){
+                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.backgroundImage = "url(icons/ShuffleClick.png)"
+                                                                                        songlistcreature.shufflefifty()
+
+                                                                                        }
                  songlistcreature.divplaylist.menubar.btnloop = document.createElement("div")
                                                                                         DeepJS.ele.lo(songlistcreature.divplaylist.menubar.btnloop,0,2/6,1,1/6)
                                                                                         songlistcreature.divplaylist.menubar.appendChild(songlistcreature.divplaylist.menubar.btnloop)
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.backgroundImage = "url(icons/LoopOff.png)"
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.backgroundSize = "100% auto"
                                                                                         songlistcreature.divplaylist.menubar.btnloop.style.borderStyle = "solid"
                                                                                         songlistcreature.divplaylist.menubar.btnloop.style.borderColor = "white"
                                                                                         songlistcreature.divplaylist.menubar.btnloop.style.borderRadius = "7px"
-                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.backgroundColor = "rgba(255,255,255,0.8)"
                                                                                         songlistcreature.divplaylist.menubar.btnloop.style.color = "Black"
-                                                                                        songlistcreature.divplaylist.menubar.btnloop.innerHTML = "Loop"
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.onclick = function(){
+                                                                                            if(songlistcreature.looping == false){
+                                                                                            songlistcreature.looping = true
+                                                                                            songlistcreature.divplaylist.menubar.btnloop.style.backgroundImage = "url(icons/LoopOn.png)"
+                                                                                            }else{
+                                                                                            songlistcreature.looping = false
+                                                                                            songlistcreature.divplaylist.menubar.btnloop.style.backgroundImage = "url(icons/LoopOff.png)"
+                                                                                            }
+                                                                                        }
 //smell of plants just getting first rain
                     DeepJS.files.find(songlistcreature.songindex, function(foundstring){
                         songlistcreature.songlist = foundstring.split("~~~")
@@ -284,7 +306,7 @@
                 hem.number = songlistcreature.playlist.length
                 hem.style.color = "White"
                 hem.style.userSelect = "none"
-                hem.style.backgroundColor = "rgba(255,255,255,0.2)"
+                hem.style.backgroundColor = "rgba(255,255,255,0.1)"
                 hem.style.borderColor = "White"
                 hem.style.borderWidth = "3px"
                 hem.style.borderStyle = "double"
@@ -299,11 +321,11 @@
 
                 play: function(playlistnumber){
                     songlistcreature.divtrackname.style.color = "Green"
-                    songlistcreature.divplaylist.menubar.btnplay.style.backgroundColor = "rgba(66, 255, 95, 1)"
                     songlistcreature.divtrackname.innerHTML = songlistcreature.playlist[playlistnumber].innerHTML
                     songlistcreature.divaudioplayer.src = "songs/"+songlistcreature.playlist[playlistnumber].innerHTML + songlistcreature.playlist[playlistnumber].extension
                     songlistcreature.divaudioplayer.play()
                     songlistcreature.playing = true
+                    songlistcreature.divplaylist.menubar.btnplay.backgroundImage = "url(icons/Pause.png)"
                     for(this.uuuuu = 0; this.uuuuu < songlistcreature.playlist.length; this.uuuuu++){songlistcreature.playlist[this.uuuuu].style.color = "White"}
                     songlistcreature.playlist[playlistnumber].style.color = "Green"
                 },
@@ -317,11 +339,11 @@
                         var selected = songlistcreature.songlistsongs[number]
                                                        songlistcreature.addtoplaylist(selected.name,selected.extension)
                                                        if(songlistcreature.intervals > 50){
+                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.backgroundImage = "url(icons/Shuffle.png)"
                                                        clearInterval(songlistcreature.interval)
                                                        songlistcreature.intervals = 0
                                                        }
-                        },20)
-},
+                        },20)},
 
 
                 page: function(who){
