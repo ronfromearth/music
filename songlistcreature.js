@@ -7,6 +7,11 @@
     artist: null,
 
     start: function(artist){
+    if(innerWidth < innerHeight){
+    this.androidmode = true
+    }else{
+    this.androidmode = false
+    }
     this.artist = artist
     this.div = document.createElement("div")
     DeepJS.ele.lo(this.div,0,0,1,1)
@@ -59,6 +64,7 @@
         divplaylist: document.createElement("div"),
 
         artist: null,
+        colorprimary: "White",
         looping: false,
         songfolder: "songs",
         songindex: "songlist.txt",
@@ -82,7 +88,7 @@
                 songlistcreature.div.style.position = "fixed"
                 document.body.appendChild(songlistcreature.div)
                 songlistcreature.div.style.backgroundColor = "black"
-                songlistcreature.div.style.borderColor = "White"
+                songlistcreature.div.style.borderColor = songlistcreature.colorprimary
                 songlistcreature.div.style.borderRadius = "15px"
                 songlistcreature.div.style.borderStyle = "double"
                  songlistcreature.divpretty = document.createElement("div")
@@ -92,31 +98,34 @@
                     songlistcreature.divpretty.style.borderStyle = "solid"
                     songlistcreature.divpretty.style.borderWidth = "3px"
                     songlistcreature.divpretty.style.borderRadius = "7px"
-                    songlistcreature.divpretty.style.borderColor = "white"
+                    songlistcreature.divpretty.style.borderColor = songlistcreature.colorprimary
                  DeepJS.ele.lo(songlistcreature.divtitle,1/9,1/18,7/9,2/18)
                 songlistcreature.div.appendChild(songlistcreature.divtitle)
                 songlistcreature.divtitle.innerHTML = songlistcreature.artist
                  songlistcreature.divtitle.style.margin = "auto"
-                songlistcreature.divtitle.style.color = "White"
-                songlistcreature.divtitle.style.borderColor = "White"
+                songlistcreature.divtitle.style.color = songlistcreature.colorprimary
+                songlistcreature.divtitle.style.borderColor = songlistcreature.colorprimary
                 songlistcreature.divtitle.style.borderWidth = "3px"
                 songlistcreature.divtitle.style.borderStyle = "double"
                 songlistcreature.divtitle.style.borderTopLeftRadius = "7px"
                 songlistcreature.divtitle.style.borderTopRightRadius = "7px"
                 songlistcreature.divtitle.style.textAlign = "center"
                 songlistcreature.divtitle.style.align = "center"
-                songlistcreature.divtitle.style.fontSize = "2.7em"
+                songlistcreature.divtitle.style.display = "flex"
+                songlistcreature.divtitle.style.justifyContent= "center"
+                songlistcreature.divtitle.style.alignItems= "center"
+                songlistcreature.divtitle.style.fontSize = "1.5em"
                  DeepJS.ele.lo(songlistcreature.divsongsearch,1/9,3/18,7/9,1/18)
                   songlistcreature.div.appendChild(songlistcreature.divsongsearch)
-                  songlistcreature.divsongsearch.style.color = "White"
+                  songlistcreature.divsongsearch.style.color = songlistcreature.colorprimary
                   songlistcreature.divsongsearch.style.backgroundColor = "Black"
                   songlistcreature.divsongsearch.placeholder = "search"
                   songlistcreature.divsongsearch.style.borderRightStyle = "double"
                   songlistcreature.divsongsearch.style.borderRightWidth = "3px"
-                  songlistcreature.divsongsearch.style.borderRightColor = "White"
+                  songlistcreature.divsongsearch.style.borderRightColor = songlistcreature.colorprimary
                     songlistcreature.divsongsearch.style.borderLeftStyle = "double"
                     songlistcreature.divsongsearch.style.borderLeftWidth = "3px"
-                    songlistcreature.divsongsearch.style.borderLeftColor = "White"
+                    songlistcreature.divsongsearch.style.borderLeftColor = songlistcreature.colorprimary
                   songlistcreature.divsongsearch.style.textAlign = "center"
                   songlistcreature.divsongsearch.oninput = function(){
                   songlistcreature.divsongs.innerHTML = ""
@@ -134,10 +143,10 @@
                                    songlistcreature.divsongs.style.backgroundColor = "Black"
                   songlistcreature.divsongs.style.borderRightStyle = "double"
                   songlistcreature.divsongs.style.borderRightWidth = "3px"
-                  songlistcreature.divsongs.style.borderRightColor = "White"
+                  songlistcreature.divsongs.style.borderRightColor = songlistcreature.colorprimary
                     songlistcreature.divsongs.style.borderLeftStyle = "double"
                     songlistcreature.divsongs.style.borderLeftWidth = "3px"
-                    songlistcreature.divsongs.style.borderLeftColor = "White"
+                    songlistcreature.divsongs.style.borderLeftColor = songlistcreature.colorprimary
                  DeepJS.ele.lo(songlistcreature.divaudioplayer,1/9,10/18,7/9,1/18)
                    songlistcreature.div.appendChild(songlistcreature.divaudioplayer)
                    songlistcreature.divaudioplayer.controls = false
@@ -155,10 +164,10 @@
                                       songlistcreature.div.appendChild(songlistcreature.timemarkerholder)
                                                         songlistcreature.timemarkerholder.style.borderRightStyle = "double"
                                                         songlistcreature.timemarkerholder.style.borderRightWidth = "3px"
-                                                        songlistcreature.timemarkerholder.style.borderRightColor = "White"
+                                                        songlistcreature.timemarkerholder.style.borderRightColor = songlistcreature.colorprimary
                                                           songlistcreature.timemarkerholder.style.borderLeftStyle = "double"
                                                           songlistcreature.timemarkerholder.style.borderLeftWidth = "3px"
-                                                          songlistcreature.timemarkerholder.style.borderLeftColor = "White"
+                                                          songlistcreature.timemarkerholder.style.borderLeftColor = songlistcreature.colorprimary
                                                                                                                     songlistcreature.timemarkerholder.style.borderBottomStyle = "double"
                                                                                                                     songlistcreature.timemarkerholder.style.borderBottomWidth = "3px"
                                                                                                                     songlistcreature.timemarkerholder.style.borderBottomColor = "White"
@@ -173,7 +182,7 @@
                  songlistcreature.divtrackname = document.createElement("div")
                                         DeepJS.ele.lo(songlistcreature.divtrackname,1/9,10/18,7/9,1/18)
                                                          songlistcreature.div.appendChild(songlistcreature.divtrackname)
-                                                         songlistcreature.divtrackname.style.color = "White"
+                                                         songlistcreature.divtrackname.style.color = songlistcreature.colorprimary
                                                          songlistcreature.divtrackname.style.textSize = "1.2em"
                                                          songlistcreature.divtrackname.style.textAlign = "center"
                                                          songlistcreature.divtrackname.style.userSelect = "none"
@@ -184,10 +193,10 @@
                    songlistcreature.div.appendChild(songlistcreature.divplaylist)
                                                            songlistcreature.divplaylist.style.borderRightStyle = "double"
                                                            songlistcreature.divplaylist.style.borderRightWidth = "3px"
-                                                           songlistcreature.divplaylist.style.borderRightColor = "White"
+                                                           songlistcreature.divplaylist.style.borderRightColor = songlistcreature.colorprimary
                                                              songlistcreature.divplaylist.style.borderLeftStyle = "double"
                                                              songlistcreature.divplaylist.style.borderLeftWidth = "3px"
-                                                             songlistcreature.divplaylist.style.borderLeftColor = "White"
+                                                             songlistcreature.divplaylist.style.borderLeftColor = songlistcreature.colorprimary
                                                                                                                           songlistcreature.divplaylist.style.borderBottomStyle = "double"
                                                                                                                           songlistcreature.divplaylist.style.borderBottomWidth = "3px"
                                                                                                                           songlistcreature.divplaylist.style.borderBottomColor = "White"
@@ -199,21 +208,21 @@
                                 songlistcreature.divplaylist.menubar.style.backgroundColor = "Black"
                                 songlistcreature.divplaylist.menubar.style.borderBottomStyle = "double"
                                                              songlistcreature.divplaylist.menubar.style.borderBottomWidth = "3px"
-                                                             songlistcreature.divplaylist.menubar.style.borderBottomColor = "White"
+                                                             songlistcreature.divplaylist.menubar.style.borderBottomColor = songlistcreature.colorprimary
                                                              songlistcreature.divplaylist.menubar.style.borderLeftStyle = "double"
                                                              songlistcreature.divplaylist.menubar.style.borderLeftWidth = "3px"
-                                                             songlistcreature.divplaylist.menubar.style.borderLeftColor = "White"
+                                                             songlistcreature.divplaylist.menubar.style.borderLeftColor = songlistcreature.colorprimary
                                                              songlistcreature.divplaylist.menubar.style.borderBottomLeftRadius = "7px"
                   songlistcreature.divplaylist.menubar.btnplay = document.createElement("div")
                                             DeepJS.ele.lo(songlistcreature.divplaylist.menubar.btnplay,0,0,1,1/6)
                                             songlistcreature.divplaylist.menubar.appendChild(songlistcreature.divplaylist.menubar.btnplay)
                                             songlistcreature.divplaylist.menubar.btnplay.style.borderStyle = "solid"
-                                            songlistcreature.divplaylist.menubar.btnplay.style.borderColor = "white"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.borderColor = songlistcreature.colorprimary
                                             songlistcreature.divplaylist.menubar.btnplay.style.borderRadius = "7px"
                                             songlistcreature.divplaylist.menubar.btnplay.style.userSelect = "none"
                                             songlistcreature.divplaylist.menubar.btnplay.style.backgroundImage = "url(icons/Pause.png)"
                                             songlistcreature.divplaylist.menubar.btnplay.style.backgroundSize = "100% auto"
-                                            songlistcreature.divplaylist.menubar.btnplay.style.color = "White"
+                                            songlistcreature.divplaylist.menubar.btnplay.style.color = songlistcreature.colorprimary
                                             songlistcreature.divplaylist.menubar.btnplay.onclick = function(){
                                                 if(songlistcreature.divaudioplayer.paused == true){
                                                 songlistcreature.divaudioplayer.play()
@@ -224,7 +233,7 @@
                                                 songlistcreature.divaudioplayer.pause()
                                                 songlistcreature.divplaylist.menubar.btnplay.style.backgroundImage = "url(icons/Play.png)"
                                                 songlistcreature.playing = false
-                                                songlistcreature.divtrackname.style.color = "White"
+                                                songlistcreature.divtrackname.style.color = songlistcreature.colorprimary
 
                                                 }
                                             }
@@ -232,7 +241,7 @@
                                                                                         DeepJS.ele.lo(songlistcreature.divplaylist.menubar.btnshuffle,0,1/6,1,1/6)
                                                                                         songlistcreature.divplaylist.menubar.appendChild(songlistcreature.divplaylist.menubar.btnshuffle)
                                                                                         songlistcreature.divplaylist.menubar.btnshuffle.style.borderStyle = "solid"
-                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.borderColor = "white"
+                                                                                        songlistcreature.divplaylist.menubar.btnshuffle.style.borderColor = songlistcreature.colorprimary
                                                                                         songlistcreature.divplaylist.menubar.btnshuffle.style.borderRadius = "7px"
                                             songlistcreature.divplaylist.menubar.btnshuffle.style.backgroundImage = "url(icons/Shuffle.png)"
                                             songlistcreature.divplaylist.menubar.btnshuffle.style.backgroundSize = "100% auto"
@@ -249,7 +258,7 @@
                                                                                         songlistcreature.divplaylist.menubar.btnloop.style.backgroundImage = "url(icons/LoopOff.png)"
                                                                                         songlistcreature.divplaylist.menubar.btnloop.style.backgroundSize = "100% auto"
                                                                                         songlistcreature.divplaylist.menubar.btnloop.style.borderStyle = "solid"
-                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.borderColor = "white"
+                                                                                        songlistcreature.divplaylist.menubar.btnloop.style.borderColor = songlistcreature.colorprimary
                                                                                         songlistcreature.divplaylist.menubar.btnloop.style.borderRadius = "7px"
                                                                                         songlistcreature.divplaylist.menubar.btnloop.style.color = "Black"
                                                                                         songlistcreature.divplaylist.menubar.btnloop.onclick = function(){
@@ -285,7 +294,7 @@
                                                             this.div.style.top = DeepJS.conversion.percentstring(this.number*1/7)
                                                             this.div.style.bottom = DeepJS.conversion.percentstring(6/7-(this.number*1/7))
                                                             this.div.innerHTML = this.name
-                                                            this.div.style.color = "White"
+                                                            this.div.style.color = songlistcreature.colorprimary
                                                             this.div.style.borderColor = "Black"
                                                             this.div.style.borderStyle = "solid"
                                                             this.div.style.borderWidth = "7px"
@@ -304,10 +313,10 @@
                 DeepJS.ele.lo(hem,0,(songlistcreature.playlist.length)*(1/7),1,1/7)
                 hem.innerHTML = hemstring
                 hem.number = songlistcreature.playlist.length
-                hem.style.color = "White"
+                hem.style.color = songlistcreature.colorprimary
                 hem.style.userSelect = "none"
                 hem.style.backgroundColor = "rgba(255,255,255,0.1)"
-                hem.style.borderColor = "White"
+                hem.style.borderColor = songlistcreature.colorprimary
                 hem.style.borderWidth = "3px"
                 hem.style.borderStyle = "double"
                 hem.extension = extension
