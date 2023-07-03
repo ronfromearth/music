@@ -229,7 +229,7 @@
                 songlistcreature.divtitle.style.alignItems= "center"
                 songlistcreature.divtitle.style.fontSize = "1.5em"
                                                                   if(this.android){
-                                                                        songlistcreature.divtitle.style.fontSize = "2em"
+                                                                        songlistcreature.divtitle.style.fontSize = "2.7em"
 
                                                                   }
                  DeepJS.ele.lo(songlistcreature.divsongsearch,1/9,3/18,7/9,1/18)
@@ -416,7 +416,7 @@
                                                             this.div.innerHTML = this.name
                                                             this.div.style.color = songlistcreature.colorprimary
                                                             this.div.style.borderColor = "Black"
-                                                            if(this.android){this.div.style.fontSize = "1.5em"}
+                                                            if(this.android){this.div.style.fontSize = "2em"}
                                                             this.div.style.borderStyle = "solid"
                                                             this.div.style.borderWidth = "7px"
                                                             this.div.onclick = function(){
@@ -441,7 +441,7 @@
                 hem.style.borderWidth = "3px"
                 hem.style.borderStyle = "double"
                 hem.style.whiteSpace = "nowrap"
-                if(this.android){hem.style.fontSize = "1.5em"}
+                if(this.android){hem.style.fontSize = "1.7em"}
                 hem.extension = extension
                 hem.onclick = function(){songlistcreature.play(hem.number)}
                 songlistcreature.playlist.push(hem)
