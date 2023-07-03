@@ -12,6 +12,7 @@
     }else{
     this.android = false
     }
+    if(this.android == false){
     this.artist = artist
     this.div = document.createElement("div")
     DeepJS.ele.lo(this.div,0,0,1,1)
@@ -46,6 +47,11 @@
             DeepJS.files.find("artisttext.txt",function(words){
                 e.text.innerHTML = words
             })
+
+                }
+                else{
+                    songlistcreature.page(artist)
+                }
         },
 
   }
