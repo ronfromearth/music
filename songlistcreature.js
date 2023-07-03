@@ -228,6 +228,10 @@
                 songlistcreature.divtitle.style.justifyContent= "center"
                 songlistcreature.divtitle.style.alignItems= "center"
                 songlistcreature.divtitle.style.fontSize = "1.5em"
+                                                                  if(this.android){
+                                                                        songlistcreature.divtitle.style.fontSize = "2em"
+
+                                                                  }
                  DeepJS.ele.lo(songlistcreature.divsongsearch,1/9,3/18,7/9,1/18)
                   songlistcreature.div.appendChild(songlistcreature.divsongsearch)
                   songlistcreature.divsongsearch.style.color = songlistcreature.colorprimary
@@ -240,6 +244,8 @@
                     songlistcreature.divsongsearch.style.borderLeftWidth = "3px"
                     songlistcreature.divsongsearch.style.borderLeftColor = songlistcreature.colorprimary
                   songlistcreature.divsongsearch.style.textAlign = "center"
+                   songlistcreature.divsongsearch.style.fontSize = "1.7em"
+                   if(this.android){songlistcreature.divsongsearch.style.fontSize = "1.8em"}
                   songlistcreature.divsongsearch.oninput = function(){
                   songlistcreature.divsongs.innerHTML = ""
                   songlistcreature.songlistsongs = []
@@ -293,7 +299,8 @@
                                         DeepJS.ele.lo(songlistcreature.divtrackname,1/9,10/18,7/9,1/18)
                                                          songlistcreature.div.appendChild(songlistcreature.divtrackname)
                                                          songlistcreature.divtrackname.style.color = songlistcreature.colorprimary
-                                                         songlistcreature.divtrackname.style.textSize = "1.2em"
+                                                         songlistcreature.divtrackname.style.fontSize = "1.2em"
+                                                         if(this.android){songlistcreature.divtrackname.style.fontSize = "1.7em"}
                                                          songlistcreature.divtrackname.style.textAlign = "center"
                                                          songlistcreature.divtrackname.style.userSelect = "none"
                                                                          songlistcreature.divtrackname.style.display = "flex"
@@ -409,6 +416,7 @@
                                                             this.div.innerHTML = this.name
                                                             this.div.style.color = songlistcreature.colorprimary
                                                             this.div.style.borderColor = "Black"
+                                                            if(this.android){this.div.style.fontSize = "1.5em"}
                                                             this.div.style.borderStyle = "solid"
                                                             this.div.style.borderWidth = "7px"
                                                             this.div.onclick = function(){
@@ -433,7 +441,7 @@
                 hem.style.borderWidth = "3px"
                 hem.style.borderStyle = "double"
                 hem.style.whiteSpace = "nowrap"
-                if(this.android){}
+                if(this.android){hem.style.fontSize = "1.5em"}
                 hem.extension = extension
                 hem.onclick = function(){songlistcreature.play(hem.number)}
                 songlistcreature.playlist.push(hem)
@@ -477,6 +485,7 @@
                                               DeepJS.ele.lo(this.div,0,0,1,1)
 
                                                   songlistcreature.init(who)
+
                                                   songlistcreature.div.style.display = "block"
                                                   },
 
