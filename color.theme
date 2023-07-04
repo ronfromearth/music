@@ -1,0 +1,49 @@
+<Background Color>
+<full>rgba(95, 201, 153,0.3)</full>
+<pretty>rgba(80, 110, 85,0.5)</pretty>
+<title>rgba(18, 66, 55,0.7)</title>
+<songsearch>rgba(122, 207, 136,0.8)</songsearch>
+<songs>rgba(92, 133, 158,0.3)</songs>
+<playingtrackname>rgba(114, 119, 163,0.3)</playingtrackname>
+<playlist>rgba(92, 133, 158,0.3)</playlist>
+<playlistmenubar>rgba(67, 113, 140,0.7)</playlistmenubar>
+<playbutton>rgba(255, 255, 255,1)</playbutton>
+<shufflebutton>rgba(255, 255, 255,1)</shufflebutton>
+<loopbutton>rgba(255, 255, 255,1)</loopbutton>
+</Background Color>
+
+<Text Color>
+<title>rgba(255,255,255,1)</title>
+<songsearch>rgba(255,255,255,1)</songsearch>
+<songs>rgba(255,255,255,1)</songs>
+<playingtrackname>rgba(255,255,255,1)</playingtrackname>
+<playlist>rgba(255,255,255,1)</playlist>
+</Text Color>
+
+<Text Shadow>
+<title></title>
+<songsearch></songsearch>
+<songs></songs>
+<playingtrackname></playingtrackname>
+<playlist></playlist>
+</Text Shadow>
+
+<Text Size>
+<title>2.0em</title>
+<songsearch>1.4em</songsearch>
+<songs>1.1em</songs>
+<playingtrackname>1.0em</playingtrackname>
+<playlist>1.1em</playlist>
+</Text Size>
+
+<Font>
+<title>TimesNewRoman</title>
+<songsearch>TimesNewRoman</songsearch>
+<songs>TimesNewRoman</songs>
+<playingtrackname>TimesNewRoman</playingtrackname>
+<playlist>TimesNewRoman</playlist>
+</Font>
+
+<Border Color>rgba(255,255,255,0.7)</Border Color>
+
+//playingsongcolor
